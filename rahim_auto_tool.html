@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>🎮 Rahim's Console Test Assistant</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* 🌿 RAINFOREST BACKGROUND */
+            background: linear-gradient(135deg, 
+                #1a5f1a 0%,     /* Deep forest green */
+                #2d7a2d 25%,    /* Medium green */
+                #4ca64c 50%,    /* Light green */
+                #2d7a2d 75%,    /* Medium green */
+                #1a5f1a 100%    /* Deep forest green */
+            );
+            background-size: 400% 400%;
+            animation: forestBackground 15s ease infinite;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Floating monkeys in background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(76, 166, 76, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(42, 157, 143, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(233, 196, 106, 0.1) 0%, transparent 30%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        @keyframes forestBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(42, 157, 143, 0.2),
+                inset 0 0 30px rgba(233, 196, 106, 0.1);
+            overflow: hidden;
+            border: 2px solid #2a9d8f;
+            position: relative;
+        }
+        
+        /* Monkey decoration corners */
+        .container::before {
+            content: "🐵";
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            font-size: 40px;
+            transform: rotate(-15deg);
+            z-index: 2;
+        }
+        
+        .container::after {
+            content: "🙉";
+            position: absolute;
+            bottom: -15px;
+            right: -15px;
+            font-size: 40px;
+            transform: rotate(15deg);
+            z-index: 2;
+        }
+        
+        .header {
+            background: linear-gradient(90deg, 
+                #264653 0%,     /* Dark jungle green */
+                #2a9d8f 50%,    /* Rainforest teal */
+                #e9c46a 100%    /* Monkey fur yellow */
+            );
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "🌿🌴🐒";
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.3;
+            animation: floatMonkeys 20s linear infinite;
+        }
+        
+        @keyframes floatMonkeys {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .header h1 {
+            margin-bottom: 5px;
+            font-size: 28px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header .subtitle {
+            opacity: 0.9;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .form-section {
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.98);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #264653;
+            font-size: 15px;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #2a9d8f;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s;
+            background-color: white !important;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #e76f51;
+            box-shadow: 0 0 0 3px rgba(231, 111, 81, 0.2);
+        }
+        
+        .required::after {
+            content: " *";
+            color: #e76f51;
+            font-weight: bold;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #2a9d8f, #264653);
+            color: white;
+            box-shadow: 0 4px 15px rgba(42, 157, 143, 0.4);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #21867a, #1e3e47);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(42, 157, 143, 0.6);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #e9c46a, #f4a261);
+            color: #264653;
+            box-shadow: 0 4px 15px rgba(233, 196, 106, 0.4);
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #e0b85c, #e89b52);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(233, 196, 106, 0.6);
+        }
+        
+        .instructions {
+            background: linear-gradient(135deg, #f8f9fa, #e9f5db);
+            border-left: 4px solid #2a9d8f;
+            padding: 20px;
+            margin-top: 25px;
+            border-radius: 10px;
+            display: none;
+            box-shadow: inset 0 2px 10px rgba(42, 157, 143, 0.1);
+        }
+        
+        .instructions h3 {
+            color: #264653;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .instruction-item {
+            margin-bottom: 12px;
+            padding-left: 10px;
+            border-left: 2px solid #e9c46a;
+            padding-left: 15px;
+        }
+        
+        .instruction-item strong {
+            color: #e76f51;
+        }
+        
+        .preview-box {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 2px solid #e9c46a;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            font-family: monospace;
+            font-size: 14px;
+            display: none;
+        }
+        
+        .success-message {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            border: 2px solid #2a9d8f;
+            color: #155724;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+            text-align: center;
+        }
+        
+        .monkey-note {
+            background: linear-gradient(135deg, #fff3cd, #f4a261);
+            border: 3px solid #e76f51;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 25px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .monkey-note::before {
+            content: "🌿🐒🌴";
+            position: absolute;
+            font-size: 40px;
+            opacity: 0.1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+        
+        .monkey-note .monkey-emoji {
+            font-size: 60px;
+            flex-shrink: 0;
+            z-index: 1;
+            animation: monkeySwing 3s ease-in-out infinite;
+        }
+        
+        @keyframes monkeySwing {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+        
+        .monkey-note .note-text {
+            text-align: left;
+            flex-grow: 1;
+            z-index: 1;
+        }
+        
+        .monkey-note h4 {
+            color: #d35400;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+        
+        .monkey-note p {
+            color: #7d6608;
+            margin-bottom: 0;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        
+        .icon {
+            font-size: 20px;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #e76f51, #f4a261);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+            box-shadow: 0 2px 5px rgba(231, 111, 81, 0.3);
+        }
+        
+        .rahim-signature {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px dashed #2a9d8f;
+            color: #264653;
+            font-style: italic;
+            position: relative;
+        }
+        
+        .rahim-signature::before {
+            content: "🐒";
+            position: absolute;
+            left: calc(50% - 20px);
+            top: -15px;
+            background: white;
+            padding: 0 10px;
+            font-size: 20px;
+        }
+        
+        /* Floating leaf animations */
+        .leaf {
+            position: fixed;
+            font-size: 24px;
+            opacity: 0.3;
+            z-index: -1;
+            animation: floatLeaf linear infinite;
+        }
+        
+        .leaf:nth-child(1) { top: 10%; left: 5%; animation-duration: 20s; }
+        .leaf:nth-child(2) { top: 30%; right: 10%; animation-duration: 25s; }
+        .leaf:nth-child(3) { bottom: 20%; left: 15%; animation-duration: 30s; }
+        .leaf:nth-child(4) { bottom: 40%; right: 5%; animation-duration: 35s; }
+        
+        @keyframes floatLeaf {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating leaves -->
+    <div class="leaf">🍃</div>
+    <div class="leaf">🌿</div>
+    <div class="leaf">🍂</div>
+    <div class="leaf">🌱</div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>🎮 Rahim's Console Test Assistant</h1>
+            <p class="subtitle">Generate pre-filled Google Forms. First failure cascades → all remaining tests become 'Not testable'</p>
+        </div>
+        
+        <div class="form-section" autocomplete="off">
+            <div class="form-group">
+                <label class="required" for="item_id">Item ID</label>
+                <input type="text" id="item_id" placeholder="Enter Item ID (e.g., CONS-1234)" autocomplete="off">
+            </div>
+            
+            <div class="form-group">
+                <label class="required" for="serial">Serial Number</label>
+                <input type="text" id="serial" placeholder="Enter Serial Number" autocomplete="off">
+            </div>
+            
+            <div class="form-group">
+                <label class="required" for="model">Model <span class="status-badge">✓ CLI IDs Working</span></label>
+                <select id="model" autocomplete="off">
+                    <option value="">-- Select Model --</option>
+                    <!-- ASUS -->
+                    <option value="Asus ROG Ally (2023)">Asus ROG Ally (2023)</option>
+                    <option value="Asus ROG Ally X (2024)">Asus ROG Ally X (2024)</option>
+                    
+                    <!-- Lenovo -->
+                    <option value="Lenovo Legion Go">Lenovo Legion Go</option>
+                    
+                    <!-- Nintendo Handhelds -->
+                    <option value="Nintendo DS">Nintendo DS</option>
+                    <option value="Nintendo 2DS (Original)">Nintendo 2DS (Original)</option>
+                    <option value="Nintendo 3DS (Original)">Nintendo 3DS (Original)</option>
+                    <option value="Nintendo 3DS XL">Nintendo 3DS XL</option>
+                    <option value="New Nintendo 3DS">New Nintendo 3DS</option>
+                    <option value="New Nintendo 3DS XL">New Nintendo 3DS XL</option>
+                    <option value="New Nintendo 2DS XL">New Nintendo 2DS XL</option>
+                    <option value="Nintendo DSi">Nintendo DSi</option>
+                    <option value="Nintendo DSi XL">Nintendo DSi XL</option>
+                    
+                    <!-- Nintendo Consoles -->
+                    <option value="Nintendo 64 (Original)">Nintendo 64 (Original)</option>
+                    <option value="Nintendo Switch">Nintendo Switch</option>
+                    <option value="Nintendo Switch 2">Nintendo Switch 2</option>
+                    <option value="Nintendo Game Boy">Nintendo Game Boy</option>
+                    <option value="Nintendo Game Boy Advance">Nintendo Game Boy Advance</option>
+                    <option value="Nintendo Wii">Nintendo Wii</option>
+                    <option value="Nintendo Wii U">Nintendo Wii U</option>
+                    
+                    <!-- PlayStation -->
+                    <option value="PlayStation 1">PlayStation 1</option>
+                    <option value="PlayStation 2">PlayStation 2</option>
+                    <option value="PlayStation 3">PlayStation 3</option>
+                    <option value="PlayStation 4">PlayStation 4</option>
+                    <option value="PlayStation 4 slim">PlayStation 4 slim</option>
+                    <option value="PlayStation 4 pro">PlayStation 4 pro</option>
+                    <option value="PlayStation 5">PlayStation 5</option>
+                    <option value="PlayStation 5 digital">PlayStation 5 digital</option>
+                    <option value="PlayStation 5 pro">PlayStation 5 pro</option>
+                    <option value="PlayStation Portal 2025">PlayStation Portal 2025</option>
+                    <option value="PlayStation Portable">PlayStation Portable</option>
+                    <option value="PlayStation Vita">PlayStation Vita</option>
+                    
+                    <!-- Steam -->
+                    <option value="Steam Deck">Steam Deck</option>
+                    
+                    <!-- Xbox -->
+                    <option value="Xbox (original)">Xbox (original)</option>
+                    <option value="Xbox 360">Xbox 360</option>
+                    <option value="Xbox One (Original)">Xbox One (Original)</option>
+                    <option value="Xbox One S">Xbox One S</option>
+                    <option value="Xbox One X">Xbox One X</option>
+                    <option value="Xbox Series S">Xbox Series S</option>
+                    <option value="Xbox Series X">Xbox Series X</option>
+                    
+                    <!-- Other -->
+                    <option value="device not supported">device not supported</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="required" for="failure_point">First Failure Point</label>
+                <select id="failure_point" onchange="updateFailureReasons()" autocomplete="off">
+                    <option value="">-- Select where it first failed --</option>
+                    <option value="auth">Authenticity check</option>
+                    <option value="boot">Powering on and booting up</option>
+                    <option value="buttons">Buttons test</option>
+                    <option value="jailbreak">Jailbreak test</option>
+                    <option value="network">Network connections test</option>
+                    <option value="accounts">Accounts check</option>
+                    <option value="ports">Ports test</option>
+                    <option value="disc_storage">Disc drive and storage test</option>
+                    <option value="battery">Battery test</option>
+                    <option value="display">Display test</option>
+                    <option value="speaker_mic">Speaker and microphone test</option>
+                    <option value="load">Load test</option>
+                    <option value="noise_smell">Noise and smell test</option>
+                    <option value="controller">Controller test (incl. vibration)</option>
+                    <option value="accessories">Accessories</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="required" for="failure_reason">Failure Reason</label>
+                <select id="failure_reason" autocomplete="off">
+                    <option value="">Select failure point first</option>
+                </select>
+                <div class="preview-box" id="previewBox">
+                    <strong>Note:</strong> Using CLI Field IDs. This reason will be attempted to prefill, but may need manual selection.
+                </div>
+            </div>
+            
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="generateForm()">
+                    <span class="icon">📋</span>
+                    Generate & Open Form
+                </button>
+                <button class="btn btn-secondary" onclick="showInstructions()">
+                    <span class="icon">❓</span>
+                    Show Instructions
+                </button>
+            </div>
+            
+            <div class="instructions" id="instructionsBox">
+                <h3><span class="icon">📝</span> How to Use</h3>
+                <div class="instruction-item">
+                    <strong>Step 1:</strong> Form will open with all tests pre-filled
+                </div>
+                <div class="instruction-item">
+                    <strong>Step 2:</strong> Find "<span id="instructionFailurePoint"></span>" section
+                </div>
+                <div class="instruction-item">
+                    <strong>Step 3:</strong> Check if failure reason is pre-filled
+                </div>
+                <div class="instruction-item">
+                    <strong>Step 4:</strong> If not, manually select: "<span id="instructionFailureReason"></span>"
+                </div>
+                <div class="instruction-item">
+                    <strong>Step 5:</strong> Review entire form and submit
+                </div>
+            </div>
+            
+            <div class="success-message" id="successMessage">
+                ✅ Form generated successfully! Check the new tab in your browser.
+            </div>
+            
+            <div class="monkey-note">
+                <div class="monkey-emoji">🙈</div>
+                <div class="note-text">
+                    <h4>⚠️ Important Note</h4>
+                    <p>Using CLI Field IDs for prefilling. All main fields will auto-fill correctly.</p>
+                    <p>Failure reasons may still need manual selection in the form due to Google Forms limitations.</p>
+                </div>
+            </div>
+            
+            <div class="rahim-signature">
+                <p>Created by <strong>Rahim</strong> 🐒<br>
+                <small>Console Testing Assistant v1.0 • CLI Field IDs Active</small></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // CLI Field IDs (Confirmed Working)
+        const FIELD_IDS = {
+            item_id: "entry.264714925",
+            serial: "entry.1467120290",
+            model: "entry.1645409711",
+            auth: "entry.1389653337",
+            boot: "entry.582532298",
+            buttons: "entry.1182612584",
+            jailbreak: "entry.496249149",
+            network: "entry.515652933",
+            accounts: "entry.1245600276",
+            ports: "entry.2000355850",
+            disc_storage: "entry.1981842962",
+            battery: "entry.1201219719",
+            display: "entry.373626164",
+            speaker_mic: "entry.1064347633",
+            load: "entry.261682137",
+            noise_smell: "entry.165249102",
+            controller: "entry.23953354",
+            accessories: "entry.926040436",
+            auth_why: "entry.1882150640",
+            boot_why: "entry.1965271608",
+            buttons_why: "entry.1567705433",
+            jailbreak_why: "entry.2116645276",
+            network_why: "entry.1387611846",
+            accounts_why: "entry.1009950602",
+            ports_why: "entry.910771481",
+            disc_storage_why: "entry.198376670",
+            battery_why: "entry.91471292",
+            display_why: "entry.876337039",
+            speaker_mic_why: "entry.728090706",
+            load_why: "entry.1847751109",
+            noise_smell_why: "entry.1095686758",
+            controller_why: "entry.570841000",
+            accessories_why: "entry.764500531",
+            general: "entry.382102081"
+        };
+
+        const TEST_DISPLAY_NAMES = {
+            auth: "Authenticity check", boot: "Powering on and booting up", buttons: "Buttons test",
+            jailbreak: "Jailbreak test", network: "Network connections test", accounts: "Accounts check",
+            ports: "Ports test", disc_storage: "Disc drive and storage test", battery: "Battery test",
+            display: "Display test", speaker_mic: "Speaker and microphone test", load: "Load test",
+            noise_smell: "Noise and smell test", controller: "Controller test (incl. vibration)", accessories: "Accessories"
+        };
+
+        const FAILURE_REASONS = {
+            auth: ["Likely nongenuine parts", "Likely counterfeit device", "Seal issues", "Other"],
+            boot: ["Not starting", "Short circuiting device", "Liquid damaged device", "Video signal errors", "Software error", "Charging failure", "Wireless charging failure", "Other"],
+            buttons: ["Button issues", "Other"],
+            jailbreak: ["Jailbroken", "Other"],
+            network: ["Wi-Fi issues", "Bluetooth issues", "Ethernet issues", "NFC issues", "Other"],
+            accounts: ["Account locked", "Black listed", "Cannot sign out", "Other"],
+            ports: ["Charging port issue", "HDMI issue", "Video signal errors", "Other"],
+            disc_storage: ["Disc drive issue", "Storage issue", "SD card issue", "Other"],
+            battery: ["Battery issue", "Safety issues", "Swollen battery", "Does not charge", "Other"],
+            display: ["Screen issues", "Dead pixels", "Other"],
+            speaker_mic: ["Speaker issues", "Mic issues", "Other"],
+            load: ["Game load issues", "Freezing", "Sensor issues", "Other"],
+            noise_smell: ["Fan noise", "Heat issues", "Smell", "Other"],
+            controller: ["Controller issues", "Vibration issues", "Other"],
+            accessories: ["Critical accessory issues", "Missing accessory", "Camera issues", "Flash issues", "Other"]
+        };
+
+        const TESTS = ["auth", "boot", "buttons", "jailbreak", "network", "accounts", "ports", "disc_storage", "battery", "display", "speaker_mic", "load", "noise_smell", "controller", "accessories"];
+
+        function updateFailureReasons() {
+            const failurePoint = document.getElementById('failure_point').value;
+            const reasonSelect = document.getElementById('failure_reason');
+            const previewBox = document.getElementById('previewBox');
+            
+            reasonSelect.innerHTML = '';
+            previewBox.style.display = 'none';
+            
+            if (!failurePoint) {
+                reasonSelect.innerHTML = '<option value="">Select failure point first</option>';
+                return;
+            }
+            
+            const reasons = FAILURE_REASONS[failurePoint] || ["Other"];
+            
+            reasons.forEach(reason => {
+                const option = document.createElement('option');
+                option.value = reason;
+                option.textContent = reason;
+                reasonSelect.appendChild(option);
+            });
+            
+            previewBox.style.display = 'block';
+            document.getElementById('instructionFailurePoint').textContent = TEST_DISPLAY_NAMES[failurePoint];
+            document.getElementById('instructionFailureReason').textContent = reasons[0];
+        }
+
+        function generateForm() {
+            const itemId = document.getElementById('item_id').value.trim();
+            const serial = document.getElementById('serial').value.trim();
+            const model = document.getElementById('model').value;
+            const failurePoint = document.getElementById('failure_point').value;
+            const failureReason = document.getElementById('failure_reason').value;
+            
+            if (!itemId || !serial || !model || !failurePoint || !failureReason) {
+                alert("❌ Please fill all required fields (*)");
+                return;
+            }
+            
+            let url = "https://docs.google.com/forms/d/e/1FAIpQLSdw_dydIgIk2lDK02LYyfi-4ytC5i7EEcjwCBV-t2qmcRU-aQ/viewform?";
+            
+            url += FIELD_IDS.item_id + "=" + encodeURIComponent(itemId) + "&";
+            url += FIELD_IDS.serial + "=" + encodeURIComponent(serial) + "&";
+            url += FIELD_IDS.model + "=" + encodeURIComponent(model) + "&";
+            
+            let failed = false;
+            
+            TESTS.forEach(test => {
+                if (failed) {
+                    url += FIELD_IDS[test] + "=" + encodeURIComponent("Not testable") + "&";
+                } else if (test === failurePoint) {
+                    url += FIELD_IDS[test] + "=" + encodeURIComponent("Failed") + "&";
+                    
+                    const reasonField = test + "_why";
+                    if (FIELD_IDS[reasonField]) {
+                        url += FIELD_IDS[reasonField] + "=" + encodeURIComponent(failureReason) + "&";
+                    }
+                    
+                    failed = true;
+                } else {
+                    url += FIELD_IDS[test] + "=" + encodeURIComponent("Passed") + "&";
+                }
+            });
+            
+            url += FIELD_IDS.general + "=" + encodeURIComponent(failed ? "Failed" : "Passed");
+            
+            console.log("Generated URL with CLI Field IDs");
+            
+            showInstructions();
+            
+            setTimeout(() => {
+                window.open(url, '_blank');
+                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 5000);
+            }, 500);
+        }
+
+        function showInstructions() {
+            const failurePoint = document.getElementById('failure_point').value;
+            const failureReason = document.getElementById('failure_reason').value;
+            
+            if (!failurePoint || !failureReason) {
+                alert("Please select both failure point and reason first");
+                return;
+            }
+            
+            document.getElementById('instructionFailurePoint').textContent = TEST_DISPLAY_NAMES[failurePoint];
+            document.getElementById('instructionFailureReason').textContent = failureReason;
+            document.getElementById('instructionsBox').style.display = 'block';
+            document.getElementById('instructionsBox').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        window.addEventListener('load', function() {
+            document.getElementById('item_id').value = '';
+            document.getElementById('serial').value = '';
+            document.getElementById('model').value = '';
+            document.getElementById('failure_point').value = '';
+            document.getElementById('failure_reason').value = '';
+            
+            console.log("🌿 Rahim's Rainforest Console Assistant Ready!");
+            console.log("✅ Using CLI Field IDs");
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'Enter') {
+                generateForm();
+            }
+        });
+    </script>
+</body>
+</html>
