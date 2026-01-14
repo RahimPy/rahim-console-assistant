@@ -47,7 +47,6 @@
             margin: 0 auto;
         }
         
-        /* Main Content */
         .main-content {
             flex: 1;
             background: rgba(20, 25, 40, 0.85);
@@ -389,7 +388,6 @@
             border-color: #ff3333;
         }
         
-        /* Success Message */
         .success-message {
             background: rgba(0, 204, 102, 0.1);
             border: 1px solid rgba(0, 204, 102, 0.3);
@@ -402,7 +400,6 @@
             font-size: 15px;
         }
         
-        /* Not Testable Info Box */
         .not-testable-box {
             background: rgba(255, 193, 7, 0.1);
             border: 1px solid rgba(255, 193, 7, 0.3);
@@ -450,7 +447,6 @@
             left: -12px;
         }
         
-        /* Sidebar */
         .sidebar {
             position: fixed;
             top: 0;
@@ -512,7 +508,6 @@
             padding: 20px;
         }
         
-        /* Big Monkey in Sidebar */
         .sidebar-monkey {
             text-align: center;
             margin: 10px 0 20px 0;
@@ -522,7 +517,6 @@
             text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
         }
         
-        /* Stats Dashboard in Sidebar */
         .stats-dashboard {
             margin-bottom: 30px;
         }
@@ -608,7 +602,6 @@
         .stat-failed .stat-value { color: #ff3333; }
         .stat-queued .stat-value { color: #ffd700; }
         
-        /* Console Statistics */
         .console-stats {
             margin-bottom: 30px;
         }
@@ -690,7 +683,6 @@
             margin-bottom: 3px;
         }
         
-        /* Queue Content */
         .queue-content {
             margin-top: 30px;
         }
@@ -819,7 +811,6 @@
             line-height: 1.6;
         }
         
-        /* Sidebar Footer */
         .sidebar-footer {
             padding: 20px;
             border-top: 1px solid rgba(66, 153, 225, 0.2);
@@ -858,7 +849,6 @@
             background: rgba(66, 153, 225, 0.2);
         }
         
-        /* Backdrop */
         .sidebar-backdrop {
             position: fixed;
             top: 0;
@@ -875,7 +865,6 @@
             display: block;
         }
         
-        /* Info Sections with Clean Border */
         .info-section {
             background: linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
             border-radius: 12px;
@@ -937,7 +926,6 @@
             left: -15px;
         }
         
-        /* Notes with clean background */
         .info-note {
             background: rgba(30, 41, 59, 0.5);
             border: 1px solid rgba(66, 153, 225, 0.2);
@@ -949,7 +937,6 @@
             line-height: 1.6;
         }
         
-        /* Red Important Warning Box */
         .warning-box {
             background: rgba(255, 51, 51, 0.1);
             border: 1px solid rgba(255, 51, 51, 0.3);
@@ -970,7 +957,6 @@
             gap: 8px;
         }
         
-        /* Keyboard Shortcuts Panel - RESPONSIVE FIX */
         .keyboard-shortcuts-panel {
             background: linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
             border-radius: 12px;
@@ -1018,7 +1004,6 @@
             color: #cbd5e1;
         }
         
-        /* Footer Signature with MULTI-COLOR NAME */
         .footer-signature {
             text-align: center;
             padding: 20px;
@@ -1037,14 +1022,14 @@
             font-weight: 700;
             background: linear-gradient(
                 90deg,
-                #60a5fa,    /* Light Blue */
-                #ffffff,    /* White */
-                #f9a8d4,    /* Light Pink */
-                #d8b4fe,    /* Light Purple */
-                #fbbf24,    /* Amber */
-                #34d399,    /* Emerald */
-                #f87171,    /* Red */
-                #60a5fa     /* Back to Light Blue */
+                #60a5fa,
+                #ffffff,
+                #f9a8d4,
+                #d8b4fe,
+                #fbbf24,
+                #34d399,
+                #f87171,
+                #60a5fa
             );
             background-size: 400% 100%;
             -webkit-background-clip: text;
@@ -1091,7 +1076,6 @@
             }
         }
         
-        /* Loading Spinner */
         .loading-spinner {
             display: none;
             width: 20px;
@@ -1114,7 +1098,6 @@
             display: none;
         }
         
-        /* Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -1133,7 +1116,6 @@
             background: linear-gradient(135deg, #3182ce 0%, #63b3ed 100%);
         }
         
-        /* Tabs for Console Stats */
         .console-tabs {
             display: flex;
             gap: 5px;
@@ -1163,7 +1145,6 @@
             background: rgba(30, 41, 59, 0.9);
         }
         
-        /* Responsive */
         @media (max-width: 1200px) {
             .button-group {
                 grid-template-columns: 1fr 1fr;
@@ -1211,21 +1192,16 @@
     </style>
 </head>
 <body>
-    <!-- Sidebar -->
     <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="closeSidebar()"></div>
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <h2>
-                📊 Dashboard & Queue
-            </h2>
+            <h2>📊 Dashboard & Queue</h2>
             <button class="close-sidebar" onclick="closeSidebar()">×</button>
         </div>
         
         <div class="sidebar-content">
-            <!-- Big Monkey in Sidebar -->
             <div class="sidebar-monkey">🐵</div>
             
-            <!-- Stats Dashboard -->
             <div class="stats-dashboard">
                 <div class="stats-title">
                     <i class="fas fa-chart-bar"></i>
@@ -1255,7 +1231,6 @@
                 </div>
             </div>
             
-            <!-- Console Statistics -->
             <div class="console-stats">
                 <div class="stats-title">
                     <i class="fas fa-gamepad"></i>
@@ -1268,20 +1243,15 @@
                     <div class="console-tab" onclick="switchConsoleTab('alltime')">All Time</div>
                 </div>
                 
-                <div class="console-categories" id="consoleCategories">
-                    <!-- Console categories will be inserted here -->
-                </div>
+                <div class="console-categories" id="consoleCategories"></div>
             </div>
             
-            <!-- Queue Content -->
             <div class="queue-content">
                 <div class="stats-title">
                     <i class="fas fa-list"></i>
                     Console Queue (<span id="queueCount">0</span>)
                 </div>
-                <div id="queueContent">
-                    <!-- Queue items will be inserted here -->
-                </div>
+                <div id="queueContent"></div>
             </div>
         </div>
         
@@ -1298,22 +1268,16 @@
         </div>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content">
         <div class="main-header">
-            <div class="hamburger-menu" onclick="openSidebar()">
-                ☰
-            </div>
+            <div class="hamburger-menu" onclick="openSidebar()">☰</div>
             <div class="header-title">
                 <h2>🎮 Console Auto Form</h2>
                 <p>Automated Console Testing Tool</p>
             </div>
-            <!-- NAME REMOVED FROM HEADER -->
         </div>
         
-        <!-- Form Section -->
         <div class="form-section" autocomplete="off">
-            <!-- Form Selector -->
             <div class="form-group">
                 <label class="required">SELECT FORM TYPE *</label>
                 <div class="form-selector">
@@ -1338,7 +1302,6 @@
                 </div>
             </div>
             
-            <!-- Basic Information -->
             <div class="form-group">
                 <div class="form-row">
                     <div>
@@ -1352,7 +1315,6 @@
                 </div>
             </div>
             
-            <!-- Live Form Fields - HIDDEN FOR FORM3 -->
             <div id="liveFormFields">
                 <div class="form-group">
                     <label class="required" for="model">MODEL *</label>
@@ -1437,7 +1399,6 @@
                 </div>
             </div>
             
-            <!-- Rejection Form Fields -->
             <div id="rejectionFormFields" style="display: none;">
                 <div class="form-group">
                     <label class="required" for="rejection_reason">REJECTION REASON *</label>
@@ -1472,7 +1433,6 @@
                 </div>
             </div>
             
-            <!-- Pass All Form Fields -->
             <div id="passAllFormFields" style="display: none;">
                 <div class="preview-box" style="background: rgba(0, 204, 102, 0.1); border-color: rgba(0, 204, 102, 0.3);">
                     <strong style="color: #00cc66;">✅ PASS ALL TESTS MODE</strong><br>
@@ -1480,17 +1440,13 @@
                 </div>
             </div>
             
-            <!-- Not Testable Info Box -->
             <div class="not-testable-box" id="notTestableBox">
                 <div class="not-testable-title">
                     ⚠️ Tests marked as "Not testable" for this console:
                 </div>
-                <ul class="not-testable-list" id="notTestableList">
-                    <!-- Will be populated by JavaScript -->
-                </ul>
+                <ul class="not-testable-list" id="notTestableList"></ul>
             </div>
             
-            <!-- Action Buttons -->
             <div class="button-group">
                 <button class="btn btn-success" onclick="generateAndOpenForm()">
                     <i class="fas fa-rocket"></i>
@@ -1506,16 +1462,13 @@
                 </button>
             </div>
             
-            <!-- Success Message -->
             <div class="success-message" id="successMessage">
                 ✅ Form added to queue successfully!<br>
                 <small>Click the hamburger menu to view your queue.</small>
             </div>
         </div>
         
-        <!-- Instructions Section with Keyboard Shortcuts on the right - RESPONSIVE FIX -->
         <div style="display: flex; flex-wrap: wrap; gap: 30px; margin: 30px;">
-            <!-- How to Use This Tool -->
             <div class="info-section" style="flex: 1; min-width: 300px;">
                 <div class="info-title">
                     <i class="fas fa-graduation-cap"></i>
@@ -1541,7 +1494,6 @@
                 </div>
             </div>
             
-            <!-- Keyboard Shortcuts - RESPONSIVE FIX -->
             <div class="keyboard-shortcuts-panel">
                 <div class="info-title">
                     <i class="fas fa-keyboard"></i>
@@ -1576,7 +1528,6 @@
             </div>
         </div>
         
-        <!-- About the Queue Section -->
         <div class="info-section" style="margin: 30px;">
             <div class="info-title">
                 <i class="fas fa-info-circle"></i>
@@ -1600,7 +1551,6 @@
             </div>
         </div>
         
-        <!-- Footer Signature with MULTI-COLOR NAME -->
         <div class="footer-signature">
             <div class="monkey-emojis">
                 <div class="monkey">🙈</div>
@@ -1612,11 +1562,9 @@
         </div>
     </div>
 
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script>
-        // Form URLs
         const FORM_URLS = {
             form1: "https://docs.google.com/forms/d/e/1FAIpQLSdw_dydIgIk2lDK02LYyfi-4ytC5i7EEcjwCBV-t2qmcRU-aQ/viewform?pli=1&pli=1",
             form2: "https://docs.google.com/forms/d/e/1FAIpQLSfBIRKz7rHYnRKip_CinYR1dPN7lUkor1B3goSxDQdrdktJ5g/viewform",
@@ -1700,7 +1648,6 @@
             "Xbox One X": ["battery", "display", "speaker_mic"],
             "Xbox Series X": ["battery", "display", "speaker_mic"],
             "Xbox 360": ["battery", "display", "speaker_mic"],
-            "PlayStation 5 digital": ["battery", "display", "speaker_mic", "disc_storage"],
             "Xbox Series S": ["battery", "display", "speaker_mic", "disc_storage"],
             "PlayStation Portable": ["controller"],
             "PlayStation Portal 2025": ["disc_storage", "load"],
@@ -1720,7 +1667,6 @@
             "PlayStation 2": ["network", "accounts", "battery", "speaker_mic", "display"]
         };
 
-        // Console categories for tracking
         const CONSOLE_CATEGORIES = {
             "PlayStation": ["PlayStation 1", "PlayStation 2", "PlayStation 3", "PlayStation 4", "PlayStation 4 slim", "PlayStation 4 pro", "PlayStation 5", "PlayStation 5 digital", "PlayStation 5 pro", "PlayStation Portal 2025", "PlayStation Portable", "PlayStation Vita"],
             "Xbox": ["Xbox (original)", "Xbox 360", "Xbox One (Original)", "Xbox One S", "Xbox One X", "Xbox Series S", "Xbox Series X"],
@@ -1733,30 +1679,15 @@
         let CURRENT_FIELD_IDS = FIELD_IDS_FORM1;
         let currentConsoleTab = 'today';
         let currentStatsTab = 'today';
+        let isProcessingBatch = false;
 
-        // Stats Tracking
         let stats = {
-            today: {
-                total: 0,
-                passed: 0,
-                failed: 0,
-                queued: 0
-            },
-            alltime: {
-                total: 0,
-                passed: 0,
-                failed: 0,
-                queued: 0
-            }
+            today: { total: 0, passed: 0, failed: 0, queued: 0 },
+            alltime: { total: 0, passed: 0, failed: 0, queued: 0 }
         };
 
-        // Console Statistics
-        let consoleStats = {
-            daily: {},
-            alltime: {}
-        };
+        let consoleStats = { daily: {}, alltime: {} };
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             loadStats();
             loadConsoleStats();
@@ -1765,42 +1696,53 @@
             updateQueueUI();
             selectForm('form1');
             document.getElementById('item_id').focus();
-            
-            // Auto-fix form URL if needed
             autoFixFormURLs();
-            
-            // Check for midnight reset
             checkMidnightReset();
         });
 
         function loadStats() {
-            const saved = localStorage.getItem('consoleTestStats');
-            if (saved) {
-                stats = JSON.parse(saved);
-                // Update queued count from actual queue
-                stats.today.queued = getQueue().length;
-                stats.alltime.queued = getQueue().length;
+            try {
+                const saved = localStorage.getItem('consoleTestStats');
+                if (saved) {
+                    stats = JSON.parse(saved);
+                    const queue = getQueue();
+                    stats.today.queued = queue.length;
+                    stats.alltime.queued = queue.length;
+                }
+            } catch (e) {
+                console.error("Error loading stats:", e);
             }
         }
 
         function saveStats() {
-            localStorage.setItem('consoleTestStats', JSON.stringify(stats));
+            try {
+                localStorage.setItem('consoleTestStats', JSON.stringify(stats));
+            } catch (e) {
+                console.error("Error saving stats:", e);
+            }
         }
 
         function loadConsoleStats() {
-            const saved = localStorage.getItem('consoleTestConsoleStats');
-            if (saved) {
-                consoleStats = JSON.parse(saved);
+            try {
+                const saved = localStorage.getItem('consoleTestConsoleStats');
+                if (saved) {
+                    consoleStats = JSON.parse(saved);
+                }
+            } catch (e) {
+                console.error("Error loading console stats:", e);
             }
         }
 
         function saveConsoleStats() {
-            localStorage.setItem('consoleTestConsoleStats', JSON.stringify(consoleStats));
+            try {
+                localStorage.setItem('consoleTestConsoleStats', JSON.stringify(consoleStats));
+            } catch (e) {
+                console.error("Error saving console stats:", e);
+            }
         }
 
         function updateStatsDisplay() {
             const currentStats = currentStatsTab === 'today' ? stats.today : stats.alltime;
-            
             document.getElementById('statTotal').textContent = currentStats.total;
             document.getElementById('statPassed').textContent = currentStats.passed;
             document.getElementById('statFailed').textContent = currentStats.failed;
@@ -1810,27 +1752,24 @@
 
         function switchStatsTab(tab) {
             currentStatsTab = tab;
-            
-            // Update tab buttons
             document.querySelectorAll('.stats-tab').forEach(tabElement => {
                 tabElement.classList.remove('active');
             });
-            event.target.classList.add('active');
-            
+            const tabs = document.querySelectorAll('.stats-tab');
+            if (tab === 'today') {
+                tabs[0].classList.add('active');
+            } else {
+                tabs[1].classList.add('active');
+            }
             updateStatsDisplay();
         }
 
         function updateConsoleStatsDisplay() {
             const searchTerm = document.getElementById('consoleSearch').value.toLowerCase();
             const categoriesContainer = document.getElementById('consoleCategories');
-            
-            // Clear existing content
             categoriesContainer.innerHTML = '';
             
-            // Sort categories by count (today or alltime)
             const categories = Object.keys(CONSOLE_CATEGORIES);
-            
-            // Calculate totals for sorting
             const categoryTotals = {};
             categories.forEach(category => {
                 if (currentConsoleTab === 'today') {
@@ -1840,24 +1779,20 @@
                 }
             });
             
-            // Sort by total count (descending)
             const sortedCategories = categories.sort((a, b) => {
                 return categoryTotals[b] - categoryTotals[a];
             });
             
-            // Create category elements
             sortedCategories.forEach(category => {
                 if (category.toLowerCase().includes(searchTerm) || searchTerm === '') {
                     const todayCount = getCategoryTodayCount(category);
                     const allTimeCount = getCategoryAllTimeCount(category);
                     
-                    // Only show categories with counts
                     if (todayCount > 0 || allTimeCount > 0) {
                         const categoryElement = document.createElement('div');
                         categoryElement.className = 'console-category';
                         categoryElement.onclick = () => showConsoleBreakdown(category);
                         
-                        // Get top 3 models for this category
                         const topModels = getTopModelsForCategory(category, 3);
                         
                         categoryElement.innerHTML = `
@@ -1883,7 +1818,6 @@
                 }
             });
             
-            // If no results, show message
             if (categoriesContainer.children.length === 0) {
                 categoriesContainer.innerHTML = `
                     <div class="queue-empty">
@@ -1936,7 +1870,6 @@
                 }
             });
             
-            // Sort by current tab's count
             modelStats.sort((a, b) => {
                 if (currentConsoleTab === 'today') {
                     return b.today - a.today;
@@ -1950,19 +1883,14 @@
 
         function updateConsoleStats(model) {
             const today = new Date().toISOString().split('T')[0];
-            
-            // Initialize if needed
             if (!consoleStats.daily[today]) {
                 consoleStats.daily[today] = {};
             }
-            
-            // Update daily stats
             if (!consoleStats.daily[today][model]) {
                 consoleStats.daily[today][model] = 0;
             }
             consoleStats.daily[today][model]++;
             
-            // Update all-time stats
             if (!consoleStats.alltime[model]) {
                 consoleStats.alltime[model] = 0;
             }
@@ -1974,13 +1902,15 @@
 
         function switchConsoleTab(tab) {
             currentConsoleTab = tab;
-            
-            // Update tab buttons
             document.querySelectorAll('.console-tab').forEach(tabElement => {
                 tabElement.classList.remove('active');
             });
-            event.target.classList.add('active');
-            
+            const tabs = document.querySelectorAll('.console-tab');
+            if (tab === 'today') {
+                tabs[0].classList.add('active');
+            } else {
+                tabs[1].classList.add('active');
+            }
             updateConsoleStatsDisplay();
         }
 
@@ -2006,6 +1936,7 @@
 
         function selectForm(formId) {
             CURRENT_FORM = formId;
+            CURRENT_FIELD_IDS = formId === 'form2' ? FIELD_IDS_FORM2 : FIELD_IDS_FORM1;
             
             document.getElementById('form1Option').classList.remove('selected');
             document.getElementById('form2Option').classList.remove('selected');
@@ -2013,7 +1944,6 @@
             document.getElementById(formId + 'Option').classList.add('selected');
             
             if (formId === 'form1') {
-                CURRENT_FIELD_IDS = FIELD_IDS_FORM1;
                 document.getElementById('formPreview').innerHTML = 
                     'Currently selected: <strong style="color:#ff3333">FAILED TEST</strong> — Detailed testing with cascade logic';
                 
@@ -2022,10 +1952,9 @@
                 document.getElementById('passAllFormFields').style.display = 'none';
                 document.getElementById('notTestableBox').style.display = 'none';
                 
-                // Show failure fields for form1
                 document.getElementById('failureFields').style.display = 'block';
+                
             } else if (formId === 'form2') {
-                CURRENT_FIELD_IDS = FIELD_IDS_FORM2;
                 document.getElementById('formPreview').innerHTML = 
                     'Currently selected: <strong style="color:#ff3333">REJECTION</strong> — Single reason rejection';
                 
@@ -2033,8 +1962,8 @@
                 document.getElementById('rejectionFormFields').style.display = 'block';
                 document.getElementById('passAllFormFields').style.display = 'none';
                 document.getElementById('notTestableBox').style.display = 'none';
+                
             } else if (formId === 'form3') {
-                CURRENT_FIELD_IDS = FIELD_IDS_FORM1;
                 document.getElementById('formPreview').innerHTML = 
                     'Currently selected: <strong style="color:#00cc66">PASS ALL TESTS</strong> — All tests passed or not testable';
                 
@@ -2042,10 +1971,8 @@
                 document.getElementById('rejectionFormFields').style.display = 'none';
                 document.getElementById('passAllFormFields').style.display = 'block';
                 
-                // HIDE failure fields for form3
                 document.getElementById('failureFields').style.display = 'none';
                 
-                // Update not testable info when switching to form3
                 const model = document.getElementById('model').value;
                 if (model) {
                     updateNotTestableInfo();
@@ -2078,10 +2005,8 @@
             const notTestableBox = document.getElementById('notTestableBox');
             const notTestableList = document.getElementById('notTestableList');
             
-            // Clear the list
             notTestableList.innerHTML = '';
             
-            // Only show for Pass All Tests form
             if (CURRENT_FORM !== 'form3') {
                 notTestableBox.style.display = 'none';
                 return;
@@ -2097,7 +2022,6 @@
             if (specialTests && specialTests.length > 0) {
                 notTestableBox.style.display = 'block';
                 
-                // Add tests that will be marked as "Not testable"
                 specialTests.forEach(test => {
                     const li = document.createElement('li');
                     li.textContent = getTestDisplayName(test);
@@ -2134,19 +2058,26 @@
             return specialTests && specialTests.includes(testName);
         }
 
-        // Queue Management
         function getQueue() {
-            const queue = localStorage.getItem('consoleTestQueue');
-            return queue ? JSON.parse(queue) : [];
+            try {
+                const queue = localStorage.getItem('consoleTestQueue');
+                return queue ? JSON.parse(queue) : [];
+            } catch (e) {
+                console.error("Error loading queue:", e);
+                return [];
+            }
         }
 
         function saveQueue(queue) {
-            localStorage.setItem('consoleTestQueue', JSON.stringify(queue));
-            updateQueueUI();
-            // Update stats queued count
-            stats.today.queued = queue.length;
-            stats.alltime.queued = queue.length;
-            updateStatsDisplay();
+            try {
+                localStorage.setItem('consoleTestQueue', JSON.stringify(queue));
+                updateQueueUI();
+                stats.today.queued = queue.length;
+                stats.alltime.queued = queue.length;
+                updateStatsDisplay();
+            } catch (e) {
+                console.error("Error saving queue:", e);
+            }
         }
 
         function collectFormData() {
@@ -2161,7 +2092,8 @@
             const formData = {
                 formType: CURRENT_FORM,
                 itemId: itemId,
-                serial: serial
+                serial: serial,
+                timestamp: new Date().toISOString()
             };
             
             if (CURRENT_FORM === 'form1' || CURRENT_FORM === 'form3') {
@@ -2184,7 +2116,7 @@
                     }
                     
                     formData.failurePoint = failurePoint;
-                    formData.failureReason = failureReason;
+                    formData.failureReason = failureReason || "Other";
                 }
                 
             } else if (CURRENT_FORM === 'form2') {
@@ -2207,18 +2139,17 @@
             
             const url = generateFormURL(formData);
             
-            // Open form in new tab
-            window.open(url, '_blank');
-            
-            // Update stats
-            updateFormStats(formData);
-            
-            // Update console stats if model exists
-            if (formData.model) {
-                updateConsoleStats(formData.model);
+            if (url && url !== "#") {
+                window.open(url, '_blank');
+                
+                updateFormStats(formData);
+                
+                if (formData.model) {
+                    updateConsoleStats(formData.model);
+                }
+                
+                clearForm();
             }
-            
-            clearForm();
         }
 
         function addToQueue() {
@@ -2233,15 +2164,12 @@
             });
             saveQueue(queue);
             
-            // Update stats
             updateFormStats(formData);
             
-            // Update console stats if model exists
             if (formData.model) {
                 updateConsoleStats(formData.model);
             }
             
-            // Show success message
             const successMsg = document.getElementById('successMessage');
             successMsg.style.display = 'block';
             setTimeout(() => {
@@ -2252,12 +2180,10 @@
         }
 
         function updateFormStats(formData) {
-            // Update today's stats
             stats.today.total++;
             if (formData.formType === 'form3') stats.today.passed++;
             else if (formData.formType === 'form2' || formData.formType === 'form1') stats.today.failed++;
             
-            // Update all-time stats
             stats.alltime.total++;
             if (formData.formType === 'form3') stats.alltime.passed++;
             else if (formData.formType === 'form2' || formData.formType === 'form1') stats.alltime.failed++;
@@ -2269,77 +2195,79 @@
             const baseUrl = FORM_URLS[formData.formType];
             
             if (!baseUrl) {
-                alert("Error: Form URL not found. Please check the form configuration.");
+                alert("Error: Form URL not found.");
                 return "#";
             }
             
             let url = baseUrl + (baseUrl.includes('?') ? '&' : '?');
+            let params = [];
             
             if (formData.formType === 'form1') {
-                // FAILED TEST form - FULLY FILLED
-                url += FIELD_IDS_FORM1.item_id + "=" + encodeURIComponent(formData.itemId) + "&";
-                url += FIELD_IDS_FORM1.serial + "=" + encodeURIComponent(formData.serial) + "&";
-                url += FIELD_IDS_FORM1.model + "=" + encodeURIComponent(formData.model) + "&";
+                // Add basic info
+                params.push(FIELD_IDS_FORM1.item_id + "=" + encodeURIComponent(formData.itemId));
+                params.push(FIELD_IDS_FORM1.serial + "=" + encodeURIComponent(formData.serial));
                 
+                if (formData.model) {
+                    params.push(FIELD_IDS_FORM1.model + "=" + encodeURIComponent(formData.model));
+                }
+                
+                // Handle cascade logic
                 let failed = false;
                 TESTS.forEach(test => {
                     if (failed) {
-                        // Everything after the failure point is "Not testable"
-                        url += FIELD_IDS_FORM1[test] + "=" + encodeURIComponent("Not testable") + "&";
+                        params.push(FIELD_IDS_FORM1[test] + "=" + encodeURIComponent("Not testable"));
                     } else if (test === formData.failurePoint) {
-                        // Mark the failure point as "failed"
-                        if (test === "disc_storage") {
-                            url += FIELD_IDS_FORM1[test] + "=" + encodeURIComponent("Failed") + "&";
-                        } else {
-                            url += FIELD_IDS_FORM1[test] + "=" + encodeURIComponent("failed") + "&";
-                        }
-                        
-                        // Fill the failure reason
-                        if (formData.failureReason) {
-                            const whyField = FIELD_IDS_FORM1[formData.failurePoint + "_why"];
-                            if (whyField) {
-                                url += whyField + "=" + encodeURIComponent(formData.failureReason) + "&";
-                            }
-                        }
+                        params.push(FIELD_IDS_FORM1[test] + "=" + encodeURIComponent("Failed"));
                         failed = true;
                     } else {
-                        // Everything before the failure point is "passed"
-                        url += FIELD_IDS_FORM1[test] + "=" + encodeURIComponent("passed") + "&";
+                        params.push(FIELD_IDS_FORM1[test] + "=" + encodeURIComponent("Passed"));
                     }
                 });
                 
-                // General field is "failed"
-                url += FIELD_IDS_FORM1.general + "=" + encodeURIComponent("failed");
+                // Add failure reason if available
+                if (formData.failurePoint && formData.failureReason) {
+                    const whyField = FIELD_IDS_FORM1[formData.failurePoint + "_why"];
+                    if (whyField) {
+                        params.push(whyField + "=" + encodeURIComponent(formData.failureReason || "Other"));
+                    }
+                }
+                
+                params.push(FIELD_IDS_FORM1.general + "=" + encodeURIComponent("failed"));
                 
             } else if (formData.formType === 'form2') {
-                // REJECTION form - FULLY FILLED
-                url += FIELD_IDS_FORM2.item_id + "=" + encodeURIComponent(formData.itemId) + "&";
-                url += FIELD_IDS_FORM2.serial + "=" + encodeURIComponent(formData.serial) + "&";
-                url += FIELD_IDS_FORM2.rejection_reason + "=" + encodeURIComponent(formData.rejectionReason) + "&";
+                params.push(FIELD_IDS_FORM2.item_id + "=" + encodeURIComponent(formData.itemId));
+                params.push(FIELD_IDS_FORM2.serial + "=" + encodeURIComponent(formData.serial));
                 
-                // General field is "failed"
-                url += FIELD_IDS_FORM2.general + "=" + encodeURIComponent("failed");
+                if (formData.rejectionReason) {
+                    params.push(FIELD_IDS_FORM2.rejection_reason + "=" + encodeURIComponent(formData.rejectionReason));
+                }
+                
+                params.push(FIELD_IDS_FORM2.general + "=" + encodeURIComponent("failed"));
                 
             } else if (formData.formType === 'form3') {
-                // PASS ALL TESTS form - FULLY FILLED with special console handling
-                url += FIELD_IDS_FORM1.item_id + "=" + encodeURIComponent(formData.itemId) + "&";
-                url += FIELD_IDS_FORM1.serial + "=" + encodeURIComponent(formData.serial) + "&";
-                url += FIELD_IDS_FORM1.model + "=" + encodeURIComponent(formData.model) + "&";
+                params.push(FIELD_IDS_FORM1.item_id + "=" + encodeURIComponent(formData.itemId));
+                params.push(FIELD_IDS_FORM1.serial + "=" + encodeURIComponent(formData.serial));
                 
-                // Handle each test based on console type
+                if (formData.model) {
+                    params.push(FIELD_IDS_FORM1.model + "=" + encodeURIComponent(formData.model));
+                }
+                
                 TESTS.forEach(test => {
-                    if (isTestNotTestableForConsole(formData.model, test)) {
-                        // Special console - mark as "Not testable"
-                        url += FIELD_IDS_FORM1[test] + "=" + encodeURIComponent("Not testable") + "&";
+                    if (formData.model && isTestNotTestableForConsole(formData.model, test)) {
+                        params.push(FIELD_IDS_FORM1[test] + "=" + encodeURIComponent("Not testable"));
                     } else {
-                        // Normal console - mark as "passed"
-                        url += FIELD_IDS_FORM1[test] + "=" + encodeURIComponent("passed") + "&";
+                        params.push(FIELD_IDS_FORM1[test] + "=" + encodeURIComponent("Passed"));
                     }
                 });
                 
-                // General field is "passed"
-                url += FIELD_IDS_FORM1.general + "=" + encodeURIComponent("passed");
+                params.push(FIELD_IDS_FORM1.general + "=" + encodeURIComponent("passed"));
             }
+            
+            // Join all parameters
+            url += params.join('&');
+            
+            // Clean up URL
+            url = url.replace(/[&?]+$/, ''); // Remove trailing & or ?
             
             return url;
         }
@@ -2434,28 +2362,33 @@
             if (!item) return;
             
             const url = generateFormURL(item);
-            window.open(url, '_blank');
-            
-            // Update stats
-            updateFormStats(item);
-            
-            // Update console stats if model exists
-            if (item.model) {
-                updateConsoleStats(item.model);
-            }
-            
-            stats.today.queued--;
-            stats.alltime.queued--;
-            updateStatsDisplay();
-            
-            setTimeout(() => {
-                if (confirm('Form opened. Remove from queue?')) {
-                    removeFromQueue(id);
+            if (url && url !== "#") {
+                window.open(url, '_blank');
+                
+                updateFormStats(item);
+                
+                if (item.model) {
+                    updateConsoleStats(item.model);
                 }
-            }, 1000);
+                
+                stats.today.queued--;
+                stats.alltime.queued--;
+                updateStatsDisplay();
+                
+                setTimeout(() => {
+                    if (confirm('Form opened. Remove from queue?')) {
+                        removeFromQueue(id);
+                    }
+                }, 1000);
+            }
         }
 
         function submitAllQueued() {
+            if (isProcessingBatch) {
+                alert("Batch processing already in progress. Please wait.");
+                return;
+            }
+            
             const queue = getQueue();
             
             if (queue.length === 0) {
@@ -2463,45 +2396,45 @@
                 return;
             }
             
-            const confirmed = confirm(`Open ${queue.length} form(s) in new tabs?`);
+            const confirmed = confirm(`Open ${queue.length} form(s) in new tabs?\n\nNote: Forms will open one by one with 1-second delays.`);
             if (!confirmed) return;
             
-            // Disable button to prevent double-clicks
+            isProcessingBatch = true;
+            
             const submitBtn = document.getElementById('submitAllBtn');
             const originalText = submitBtn.innerHTML;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
             submitBtn.disabled = true;
             
-            // Open ALL forms with proper delays
             let openedCount = 0;
+            const totalToOpen = queue.length;
             
             queue.forEach((item, index) => {
                 setTimeout(() => {
                     const url = generateFormURL(item);
-                    window.open(url, '_blank');
-                    openedCount++;
-                    
-                    // Update stats
-                    updateFormStats(item);
-                    
-                    // Update console stats if model exists
-                    if (item.model) {
-                        updateConsoleStats(item.model);
+                    if (url && url !== "#") {
+                        window.open(url, '_blank');
+                        openedCount++;
+                        
+                        updateFormStats(item);
+                        
+                        if (item.model) {
+                            updateConsoleStats(item.model);
+                        }
+                        
+                        removeFromQueue(item.id);
+                        
+                        if (openedCount === totalToOpen) {
+                            setTimeout(() => {
+                                submitBtn.innerHTML = originalText;
+                                submitBtn.disabled = false;
+                                isProcessingBatch = false;
+                                alert(`✅ ${openedCount} form(s) opened successfully!\nQueue has been cleared.`);
+                                closeSidebar();
+                            }, 500);
+                        }
                     }
-                    
-                    // Remove from queue after opening
-                    removeFromQueue(item.id);
-                    
-                    // Update progress
-                    if (openedCount === queue.length) {
-                        setTimeout(() => {
-                            submitBtn.innerHTML = originalText;
-                            submitBtn.disabled = false;
-                            alert(`✅ ${openedCount} form(s) opened successfully!\nQueue has been cleared.`);
-                            closeSidebar();
-                        }, 500);
-                    }
-                }, index * 1000); // 1 second delay between forms
+                }, index * 1000);
             });
         }
 
@@ -2513,10 +2446,8 @@
                 return;
             }
             
-            // CSV headers
             let csv = "Date,Time,Item ID,Serial Number,Model,Form Type,Failure Point,Failure Reason,Rejection Reason\n";
             
-            // Add rows
             queue.forEach(item => {
                 const date = new Date(item.timestamp);
                 const dateStr = date.toLocaleDateString();
@@ -2527,7 +2458,6 @@
                 csv += `${dateStr},${timeStr},"${item.itemId}","${item.serial}","${item.model || ''}","${formTypeName}","${item.failurePoint || ''}","${item.failureReason || ''}","${item.rejectionReason || ''}"\n`;
             });
             
-            // Create download
             const blob = new Blob([csv], { type: 'text/csv' });
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -2556,16 +2486,13 @@
             const lastReset = localStorage.getItem('consoleTestLastReset');
             
             if (lastReset !== today) {
-                // Reset today's stats
                 stats.today.total = 0;
                 stats.today.passed = 0;
                 stats.today.failed = 0;
                 stats.today.queued = getQueue().length;
                 
-                // Clear today's console stats
                 consoleStats.daily = {};
                 
-                // Save the reset date
                 localStorage.setItem('consoleTestLastReset', today);
                 saveStats();
                 saveConsoleStats();
@@ -2588,53 +2515,60 @@
             document.getElementById('item_id').focus();
         }
 
-        // Auto-fix form URLs function
         function autoFixFormURLs() {
-            // Check if FORM_URLS form2 has a typo and fix it
             if (FORM_URLS.form2 && FORM_URLS.form2.includes("google.comforms")) {
                 FORM_URLS.form2 = FORM_URLS.form2.replace("google.comforms", "google.com/forms");
             }
         }
 
-        // Keyboard shortcuts - F2 without popup
         let lastF2Time = 0;
+        let keyboardShortcutsEnabled = true;
         
         document.addEventListener('keydown', function(e) {
+            if (!keyboardShortcutsEnabled) return;
+            
             if (e.ctrlKey && e.key === 'Enter') {
                 e.preventDefault();
                 generateAndOpenForm();
+                return;
             }
             if (e.ctrlKey && e.key === 'q') {
                 e.preventDefault();
                 addToQueue();
+                return;
             }
             if (e.ctrlKey && e.key === '1') {
                 e.preventDefault();
                 selectForm('form1');
+                return;
             }
             if (e.ctrlKey && e.key === '2') {
                 e.preventDefault();
                 selectForm('form2');
+                return;
             }
             if (e.ctrlKey && e.key === '3') {
                 e.preventDefault();
                 selectForm('form3');
+                return;
             }
             if (e.ctrlKey && e.key === 'l') {
                 e.preventDefault();
                 openSidebar();
+                return;
             }
             if (e.key === 'F2') {
                 e.preventDefault();
-                // Prevent multiple rapid swaps
                 const now = Date.now();
-                if (now - lastF2Time > 500) { // 500ms delay between swaps
+                if (now - lastF2Time > 500) {
                     swapIdSerial();
                     lastF2Time = now;
                 }
+                return;
             }
             if (e.key === 'Escape') {
                 closeSidebar();
+                return;
             }
         });
 
