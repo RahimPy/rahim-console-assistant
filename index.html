@@ -1489,7 +1489,7 @@
                         <div class="warning-title">
                             ⚠️ IMPORTANT
                         </div>
-                        Google Forms may not pre-fill failure reasons automatically. After the form opens, you MUST check and select the failure reason manually if it's not already selected. Also When trying to use F2 KEYBOARD SHORTCUT (Swap ID/Serial) on mxkeys keyboard you must press FN +F2
+                        Google Forms may not pre-fill failure reasons automatically. After the form opens, you MUST check and select the failure reason manually if it's not already selected.
                     </div>
                 </div>
             </div>
@@ -1537,7 +1537,7 @@
                 <div class="info-note">
                     <strong>📋 Queue Features:</strong>
                     <ul class="info-list">
-                        <li>Store forms for when FUFI goes down</li>
+                        <li>Store forms for offline work</li>
                         <li>Batch submit when online</li>
                         <li>Data saved in browser</li>
                         <li>Export to CSV</li>
@@ -2580,19 +2580,6 @@
             itemId.value = serial.value;
             serial.value = temp;
         }
-        <!-- Add this right before </body> -->
-<div id="scannerStatus" style="display: none;"></div>
-
-<script>
-    // Mini initialization - won't affect anything
-    setTimeout(() => {
-        if (typeof setupZebraScannerSupport === 'function') {
-            setupZebraScannerSupport();
-        }
-    }, 1000);
-</script>
     </script>
 </body>
 </html>
-
-
