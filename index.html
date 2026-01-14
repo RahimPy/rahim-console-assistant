@@ -1699,27 +1699,54 @@
             autoFixFormURLs();
             checkMidnightReset();
             
-            // Add autofocus functionality
+            // ============ SCANNER-FRIENDLY AUTOFOCUS ============
+            let itemIdInputTimer;
+
             document.getElementById('item_id').addEventListener('input', function() {
-                if (this.value.length === 8) {
+                clearTimeout(itemIdInputTimer);
+                
+                // Clean any Tab characters
+                const value = this.value.replace(/\t/g, '');
+                
+                // Update if cleaned
+                if (value !== this.value) {
+                    this.value = value;
+                }
+                
+                // If 8 digits, move to serial with small delay
+                if (value.length === 8) {
+                    itemIdInputTimer = setTimeout(() => {
+                        document.getElementById('serial').focus();
+                    }, 50); // Minimal delay - fastest but still works with scanners
+                }
+            });
+
+            // Handle Tab key from scanner
+            document.getElementById('item_id').addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    e.preventDefault();
+                    const cleanValue = this.value.replace(/\t/g, '').substring(0, 8);
+                    this.value = cleanValue;
                     document.getElementById('serial').focus();
                 }
             });
-            
-            // Optional: Enter key navigation
+
+            // Optional: Enter key to jump to serial
             document.getElementById('item_id').addEventListener('keydown', function(e) {
                 if (e.key === 'Enter') {
                     e.preventDefault();
                     document.getElementById('serial').focus();
                 }
             });
-            
+
+            // Optional: Enter at beginning of serial to jump back
             document.getElementById('serial').addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' && this.selectionStart === 0 && this.value === '') {
                     e.preventDefault();
                     document.getElementById('item_id').focus();
                 }
             });
+            // ============ END SCANNER-FRIENDLY AUTOFOCUS ============
         });
 
         function loadStats() {
