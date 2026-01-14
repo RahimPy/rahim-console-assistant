@@ -2580,6 +2580,18 @@
             itemId.value = serial.value;
             serial.value = temp;
         }
+        <!-- Add this right before </body> -->
+<div id="scannerStatus" style="display: none;"></div>
+
+<script>
+    // Mini initialization - won't affect anything
+    setTimeout(() => {
+        if (typeof setupZebraScannerSupport === 'function') {
+            setupZebraScannerSupport();
+        }
+    }, 1000);
+</script>
     </script>
 </body>
 </html>
+
