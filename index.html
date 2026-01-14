@@ -1306,7 +1306,7 @@
                 <div class="form-row">
                     <div>
                         <label class="required" for="item_id">ITEM ID *</label>
-                        <input type="text" id="item_id" placeholder="Enter Item ID (e.g., 0012345)" autocomplete="off">
+                        <input type="text" id="item_id" placeholder="Enter Item ID (e.g., 0012345)" autocomplete="off" maxlength="8">
                     </div>
                     <div>
                         <label class="required" for="serial">SERIAL NUMBER *</label>
@@ -1698,6 +1698,28 @@
             document.getElementById('item_id').focus();
             autoFixFormURLs();
             checkMidnightReset();
+            
+            // Add autofocus functionality
+            document.getElementById('item_id').addEventListener('input', function() {
+                if (this.value.length === 8) {
+                    document.getElementById('serial').focus();
+                }
+            });
+            
+            // Optional: Enter key navigation
+            document.getElementById('item_id').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    document.getElementById('serial').focus();
+                }
+            });
+            
+            document.getElementById('serial').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && this.selectionStart === 0 && this.value === '') {
+                    e.preventDefault();
+                    document.getElementById('item_id').focus();
+                }
+            });
         });
 
         function loadStats() {
