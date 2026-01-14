@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🎮 Console Auto Form</title>
     <meta name="robots" content="noindex, nofollow">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -13,7 +15,6 @@
         
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            /* 🌫️ DARK MISTY BACKGROUND */
             background: 
                 radial-gradient(circle at 20% 30%, rgba(15, 30, 50, 0.3) 0%, transparent 50%),
                 radial-gradient(circle at 80% 70%, rgba(30, 15, 40, 0.3) 0%, transparent 50%),
@@ -25,7 +26,6 @@
             overflow-x: hidden;
         }
         
-        /* Animated mist overlay */
         body::before {
             content: '';
             position: fixed;
@@ -38,75 +38,75 @@
                 radial-gradient(circle at 90% 80%, rgba(150, 100, 255, 0.02) 0%, transparent 30%);
             pointer-events: none;
             z-index: 0;
-            animation: mistFloat 20s ease-in-out infinite alternate;
         }
         
-        @keyframes mistFloat {
-            0% { transform: translateY(0) translateX(0); opacity: 0.7; }
-            100% { transform: translateY(-20px) translateX(20px); opacity: 1; }
-        }
-        
-        .container {
-            max-width: 800px;
+        .app-container {
+            display: flex;
+            gap: 20px;
+            max-width: 1600px;
             margin: 0 auto;
-            background: rgba(20, 25, 40, 0.85);
-            border-radius: 16px; /* ROUNDED EDGES */
-            box-shadow: 
-                0 25px 50px -12px rgba(0, 0, 0, 0.5),
-                0 0 0 1px rgba(66, 153, 225, 0.15); /* LIGHT BLUE BORDER */
-            overflow: hidden;
-            border: 1px solid rgba(66, 153, 225, 0.25); /* LIGHT BLUE BORDER */
-            backdrop-filter: blur(10px);
-            position: relative;
-            z-index: 1;
         }
         
-        .header {
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            background: rgba(20, 25, 40, 0.85);
+            border-radius: 16px;
+            border: 1px solid rgba(66, 153, 225, 0.25);
+            backdrop-filter: blur(10px);
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(66, 153, 225, 0.15);
+            overflow: hidden;
+        }
+        
+        .main-header {
             background: linear-gradient(90deg, 
                 rgba(30, 41, 59, 0.9) 0%, 
-                rgba(66, 153, 225, 0.2) 50%, /* LIGHT BLUE ACCENT */
+                rgba(66, 153, 225, 0.2) 50%,
                 rgba(30, 41, 59, 0.9) 100%);
-            color: white;
             padding: 25px 30px;
-            text-align: center;
-            border-bottom: 1px solid rgba(66, 153, 225, 0.2); /* LIGHT BLUE BORDER */
-            position: relative;
-            overflow: hidden;
+            border-bottom: 1px solid rgba(66, 153, 225, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
         
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(66, 153, 225, 0.15), /* LIGHT BLUE SHINE */
-                transparent);
-            animation: headerShine 6s ease-in-out infinite;
+        .hamburger-menu {
+            background: rgba(66, 153, 225, 0.1);
+            border: 1px solid rgba(66, 153, 225, 0.3);
+            border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #90cdf4;
+            font-size: 20px;
+            transition: all 0.3s;
         }
         
-        @keyframes headerShine {
-            0% { left: -100%; }
-            100% { left: 100%; }
+        .hamburger-menu:hover {
+            background: rgba(66, 153, 225, 0.2);
+            transform: translateY(-2px);
         }
         
-        .header h1 {
-            margin-bottom: 10px;
-            font-size: 32px;
-            font-weight: 700;
-            letter-spacing: 1px;
+        .header-title {
+            flex: 1;
+        }
+        
+        .header-title h2 {
             color: #ffffff;
-            text-shadow: 0 2px 10px rgba(66, 153, 225, 0.3); /* LIGHT BLUE SHADOW */
+            font-size: 28px;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(66, 153, 225, 0.3);
         }
         
-        .header .subtitle {
+        .header-title p {
+            color: #90cdf4;
+            font-size: 16px;
             opacity: 0.9;
-            font-size: 15px;
-            font-weight: 400;
-            color: #90cdf4; /* LIGHT BLUE TEXT */
         }
         
         .form-section {
@@ -122,7 +122,7 @@
             display: block;
             margin-bottom: 10px;
             font-weight: 600;
-            color: #90cdf4; /* LIGHT BLUE TEXT */
+            color: #90cdf4;
             font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -130,15 +130,15 @@
         
         .required::after {
             content: " *";
-            color: #ff3333; /* Keep red for required asterisk */
+            color: #ff3333;
             font-weight: bold;
         }
         
         .form-group input, .form-group select {
             width: 100%;
             padding: 14px 16px;
-            border: 1px solid rgba(66, 153, 225, 0.3); /* LIGHT BLUE BORDER */
-            border-radius: 10px; /* ROUNDED EDGES */
+            border: 1px solid rgba(66, 153, 225, 0.3);
+            border-radius: 10px;
             font-size: 15px;
             transition: all 0.3s;
             background: rgba(30, 41, 59, 0.7) !important;
@@ -152,7 +152,7 @@
         
         .form-group select {
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2390cdf4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); /* LIGHT BLUE ARROW */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2390cdf4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 16px center;
             background-size: 16px;
@@ -160,12 +160,11 @@
         
         .form-group input:focus, .form-group select:focus {
             outline: none;
-            border-color: #4299e1; /* LIGHT BLUE FOCUS */
-            box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.2); /* LIGHT BLUE SHADOW */
+            border-color: #4299e1;
+            box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.2);
             background: rgba(30, 41, 59, 0.9) !important;
         }
         
-        /* Form selector styling */
         .form-selector {
             display: flex;
             gap: 12px;
@@ -175,8 +174,8 @@
         .form-option {
             flex: 1;
             padding: 20px 15px;
-            border: 1px solid rgba(66, 153, 225, 0.3); /* LIGHT BLUE BORDER */
-            border-radius: 12px; /* ROUNDED EDGES */
+            border: 1px solid rgba(66, 153, 225, 0.3);
+            border-radius: 12px;
             background: rgba(30, 41, 59, 0.7);
             cursor: pointer;
             text-align: center;
@@ -186,32 +185,22 @@
         }
         
         .form-option:hover {
-            border-color: rgba(66, 153, 225, 0.5); /* LIGHT BLUE HOVER */
+            border-color: rgba(66, 153, 225, 0.5);
             background: rgba(30, 41, 59, 0.9);
         }
         
-        /* LIVE TESTING - GLOWING RED WHEN SELECTED */
         .form-option[data-form="form1"].selected {
             border-color: #ff3333;
             background: linear-gradient(135deg, rgba(255, 51, 51, 0.15), rgba(30, 41, 59, 0.9));
             box-shadow: 0 0 15px rgba(255, 51, 51, 0.5);
-            animation: redGlow 2s infinite alternate;
         }
         
-        @keyframes redGlow {
-            0% { box-shadow: 0 0 10px rgba(255, 51, 51, 0.5); }
-            100% { box-shadow: 0 0 20px rgba(255, 51, 51, 0.8); }
-        }
-        
-        /* REJECTION - GLOWING RED WHEN SELECTED */
         .form-option[data-form="form2"].selected {
             border-color: #ff3333;
             background: linear-gradient(135deg, rgba(255, 51, 51, 0.15), rgba(30, 41, 59, 0.9));
             box-shadow: 0 0 15px rgba(255, 51, 51, 0.5);
-            animation: redGlow 2s infinite alternate;
         }
         
-        /* PASS ALL TESTS - GREEN WHEN SELECTED */
         .form-option[data-form="form3"].selected {
             border-color: #00cc66;
             background: linear-gradient(135deg, rgba(0, 204, 102, 0.15), rgba(30, 41, 59, 0.9));
@@ -225,7 +214,7 @@
             left: 0;
             right: 0;
             height: 3px;
-            border-radius: 12px 12px 0 0; /* ROUNDED EDGES */
+            border-radius: 12px 12px 0 0;
         }
         
         .form-option[data-form="form1"].selected::before,
@@ -241,7 +230,7 @@
             font-size: 26px;
             margin-bottom: 8px;
             display: block;
-            color: #90cdf4; /* LIGHT BLUE ICONS */
+            color: #90cdf4;
         }
         
         .form-option.selected .form-icon {
@@ -291,42 +280,45 @@
             color: #cccccc;
         }
         
-        /* Special styling for rejection reason select */
-        #rejection_reason {
-            background-color: rgba(30, 41, 59, 0.7) !important;
-            color: #ffffff;
-            border: 1px solid rgba(66, 153, 225, 0.3); /* LIGHT BLUE BORDER */
-            padding: 12px;
-            border-radius: 10px; /* ROUNDED EDGES */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 1400px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .preview-box {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(66, 153, 225, 0.3);
+            border-radius: 10px;
+            padding: 16px;
+            margin-top: 15px;
             font-size: 14px;
-        }
-        
-        #rejection_reason option {
-            background-color: #1a202c;
-            color: #ffffff;
-            padding: 12px;
-        }
-        
-        #rejection_reason option:hover {
-            background-color: #2d3748 !important;
-        }
-        
-        #rejection_reason option:checked {
-            background-color: #4299e1 !important; /* LIGHT BLUE SELECTED */
-            color: white;
+            color: #a0aec0;
         }
         
         .button-group {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 15px;
             margin-top: 32px;
         }
         
+        @media (max-width: 1200px) {
+            .button-group {
+                grid-template-columns: 1fr;
+            }
+        }
+        
         .btn {
-            flex: 1;
             padding: 16px;
             border: none;
-            border-radius: 10px; /* ROUNDED EDGES */
+            border-radius: 10px;
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
@@ -337,6 +329,11 @@
             gap: 10px;
             position: relative;
             overflow: hidden;
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
         
         .btn::before {
@@ -353,321 +350,976 @@
             transition: left 0.5s;
         }
         
-        .btn:hover::before {
+        .btn:hover:not(:disabled)::before {
             left: 100%;
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
-            color: #ffffff;
-            border: 1px solid rgba(66, 153, 225, 0.3); /* LIGHT BLUE BORDER */
-        }
-        
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #3c4557 0%, #5a6578 100%);
-            border-color: #4299e1; /* LIGHT BLUE HOVER */
-        }
-        
-        .btn-secondary {
-            background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
-            color: #ffffff;
-            border: 1px solid rgba(66, 153, 225, 0.3); /* LIGHT BLUE BORDER */
-        }
-        
-        .btn-secondary:hover {
-            background: linear-gradient(135deg, #3c4557 0%, #5a6578 100%);
-            border-color: #4299e1; /* LIGHT BLUE HOVER */
-        }
-        
-        .preview-box {
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid rgba(66, 153, 225, 0.3); /* LIGHT BLUE BORDER */
-            border-radius: 10px; /* ROUNDED EDGES */
-            padding: 16px;
-            margin-top: 15px;
-            font-size: 14px;
-            color: #a0aec0;
-            display: none;
-        }
-        
-        /* INSTRUCTIONS - WITH STYLISH BOXES */
-        .instructions-section {
-            background: transparent;
-            padding: 25px 0;
-            margin-top: 25px;
-            position: relative;
-        }
-        
-        .instructions-title {
-            color: #ffffff; /* WHITE TITLE */
-            margin-bottom: 25px;
-            font-size: 22px;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            text-shadow: 0 0 10px rgba(66, 153, 225, 0.3); /* LIGHT BLUE SHADOW */
-            position: relative;
-        }
-        
-        /* BIGGER Floating monkey next to title - MAX OPACITY */
-        .title-monkey {
-            font-size: 48px; /* BIGGER MONKEY */
-            opacity: 1;
-            animation: monkeyFloat 4s ease-in-out infinite;
-            filter: drop-shadow(0 5px 10px rgba(255, 215, 0, 0.5));
-        }
-        
-        @keyframes monkeyFloat {
-            0%, 100% { 
-                transform: translateY(0) rotate(0deg); 
-            }
-            25% { 
-                transform: translateY(-10px) rotate(5deg); 
-            }
-            50% { 
-                transform: translateY(-20px) rotate(0deg); 
-            }
-            75% { 
-                transform: translateY(-10px) rotate(-5deg); 
-            }
-        }
-        
-        .instruction-step {
-            background: rgba(30, 41, 59, 0.7); /* MATCHING BACKGROUND BOX */
-            border-left: 4px solid #4299e1; /* LIGHT BLUE ACCENT */
-            border-radius: 10px; /* ROUNDED EDGES */
-            padding: 20px;
-            margin-bottom: 15px;
-            color: #ffffff; /* WHITE TEXT */
-            font-size: 14px;
-            line-height: 1.6;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .instruction-step:hover {
-            transform: translateX(5px);
-            background: rgba(30, 41, 59, 0.8);
-        }
-        
-        .step-number {
-            display: inline-block;
-            background: linear-gradient(135deg, #4299e1, #90cdf4); /* LIGHT BLUE GRADIENT */
+            background: linear-gradient(135deg, #4299e1, #3182ce);
             color: white;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 36px;
-            font-weight: 700;
-            margin-right: 15px;
-            font-size: 16px;
-            box-shadow: 0 4px 10px rgba(66, 153, 225, 0.3);
+            border: 1px solid rgba(66, 153, 225, 0.3);
         }
         
-        .instruction-step strong {
-            color: #ffd700; /* YELLOW/ORANGE STRONG TEXT */
-            display: inline-block;
-            margin-bottom: 5px;
-            font-size: 15px;
-            font-weight: 700;
+        .btn-primary:hover:not(:disabled) {
+            background: linear-gradient(135deg, #3182ce, #2b6cb0);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.4);
         }
         
-        .instruction-step:last-child {
-            margin-bottom: 0;
+        .btn-success {
+            background: linear-gradient(135deg, #00cc66, #00aa55);
+            color: white;
+            border: 1px solid rgba(0, 204, 102, 0.3);
         }
         
-        /* RED BOX FOR IMPORTANT WARNING */
-        .important-warning {
+        .btn-success:hover:not(:disabled) {
+            background: linear-gradient(135deg, #00aa55, #008844);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 204, 102, 0.4);
+        }
+        
+        .btn-clear {
             background: rgba(255, 51, 51, 0.1);
-            border: 2px solid #ff3333;
-            border-radius: 10px; /* ROUNDED EDGES */
-            padding: 20px;
-            margin: 20px 0;
-            color: #ffcccc;
-            font-size: 14px;
-            line-height: 1.6;
-            box-shadow: 0 0 20px rgba(255, 51, 51, 0.2);
-            position: relative;
-            overflow: hidden;
-            animation: pulseWarning 2s infinite;
-        }
-        
-        @keyframes pulseWarning {
-            0% { box-shadow: 0 0 10px rgba(255, 51, 51, 0.2); }
-            50% { box-shadow: 0 0 20px rgba(255, 51, 51, 0.4); }
-            100% { box-shadow: 0 0 10px rgba(255, 51, 51, 0.2); }
-        }
-        
-        .important-warning strong {
             color: #ff6666;
-            display: block;
-            margin-bottom: 10px;
-            font-size: 16px;
-            font-weight: 700;
+            border: 1px solid rgba(255, 51, 51, 0.3);
         }
         
-        .important-warning::before {
-            content: '⚠️';
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 24px;
-            opacity: 0.5;
+        .btn-clear:hover {
+            background: rgba(255, 51, 51, 0.2);
+            border-color: #ff3333;
         }
         
+        /* Success Message */
         .success-message {
             background: rgba(0, 204, 102, 0.1);
             border: 1px solid rgba(0, 204, 102, 0.3);
             color: #66ff99;
             padding: 18px;
-            border-radius: 10px; /* ROUNDED EDGES */
+            border-radius: 10px;
             margin-top: 24px;
             display: none;
             text-align: center;
             font-size: 15px;
-            backdrop-filter: blur(5px);
         }
         
-        /* Three Monkeys at the Bottom */
-        .three-monkeys {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 40px;
-            margin-top: 30px;
-            padding: 20px 0;
-            position: relative;
-        }
-        
-        .monkey-icon {
-            font-size: 48px;
-            opacity: 0.9;
-            animation: monkeyFloatSimple 3s ease-in-out infinite;
-            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
-        }
-        
-        .monkey-icon:nth-child(1) {
-            animation-delay: 0s;
-            color: #ff3333;
-        }
-        
-        .monkey-icon:nth-child(2) {
-            animation-delay: 0.5s;
-            color: #4299e1; /* LIGHT BLUE */
-        }
-        
-        .monkey-icon:nth-child(3) {
-            animation-delay: 1s;
-            color: #00cc66;
-        }
-        
-        @keyframes monkeyFloatSimple {
-            0%, 100% { 
-                transform: translateY(0) scale(1); 
-            }
-            50% { 
-                transform: translateY(-15px) scale(1.05); 
-            }
-        }
-        
-        /* Signature Section with GLOWING COLORS (not rainbow) */
-        .signature-section {
-            margin-top: 20px;
-            padding-top: 25px;
-            border-top: 1px solid rgba(66, 153, 225, 0.3); /* LIGHT BLUE BORDER */
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .signature {
-            display: inline-block;
-            font-family: 'Brush Script MT', cursive;
-            font-size: 42px;
-            font-weight: bold;
-            position: relative;
-            padding: 0 25px;
-            letter-spacing: 2px;
-            animation: signatureGlow 4s infinite alternate ease-in-out;
-            text-shadow: 
-                0 0 10px currentColor,
-                0 0 20px currentColor;
-        }
-        
-        @keyframes signatureGlow {
-            0% {
-                color: #4299e1; /* LIGHT BLUE */
-                transform: scale(1);
-            }
-            33% {
-                color: #ffd700; /* GOLD */
-                transform: scale(1.05);
-            }
-            66% {
-                color: #00cc66; /* GREEN */
-                transform: scale(1);
-            }
-            100% {
-                color: #ff6b6b; /* CORAL */
-                transform: scale(1.05);
-            }
-        }
-        
-        .created-by {
-            color: #90cdf4; /* LIGHT BLUE TEXT */
+        /* Not Testable Info Box */
+        .not-testable-box {
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            border-left: 4px solid #ffc107;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #ffd54f;
             font-size: 14px;
-            margin-top: 10px;
-            letter-spacing: 3px;
+            display: none;
+        }
+        
+        .not-testable-box.show {
+            display: block;
+        }
+        
+        .not-testable-title {
+            color: #ffd700;
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .not-testable-list {
+            list-style: none;
+            margin: 5px 0 0 0;
+            padding-left: 20px;
+        }
+        
+        .not-testable-list li {
+            margin-bottom: 5px;
+            padding-left: 5px;
+            position: relative;
+            font-size: 13px;
+        }
+        
+        .not-testable-list li:before {
+            content: "•";
+            color: #ffc107;
+            font-size: 16px;
+            position: absolute;
+            left: -12px;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -450px;
+            width: 450px;
+            height: 100vh;
+            background: rgba(20, 25, 40, 0.98);
+            border-right: 1px solid rgba(66, 153, 225, 0.3);
+            box-shadow: 5px 0 25px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            transition: left 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+        }
+        
+        .sidebar.open {
+            left: 0;
+        }
+        
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(66, 153, 225, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .sidebar-header h2 {
+            color: #90cdf4;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .close-sidebar {
+            background: rgba(255, 51, 51, 0.2);
+            border: 1px solid rgba(255, 51, 51, 0.4);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s;
+        }
+        
+        .close-sidebar:hover {
+            background: rgba(255, 51, 51, 0.4);
+        }
+        
+        .sidebar-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        /* Big Monkey in Sidebar */
+        .sidebar-monkey {
+            text-align: center;
+            margin: 10px 0 20px 0;
+            font-size: 60px;
+            animation: bounce 1s infinite alternate;
+            opacity: 1;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        /* Stats Dashboard in Sidebar */
+        .stats-dashboard {
+            margin-bottom: 30px;
+        }
+        
+        .stats-title {
+            color: #90cdf4;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .stats-tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .stats-tab {
+            flex: 1;
+            padding: 8px;
+            text-align: center;
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(66, 153, 225, 0.2);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            color: #a0aec0;
+            transition: all 0.3s;
+        }
+        
+        .stats-tab.active {
+            background: rgba(66, 153, 225, 0.2);
+            color: #90cdf4;
+            border-color: rgba(66, 153, 225, 0.4);
+        }
+        
+        .stats-tab:hover:not(.active) {
+            background: rgba(30, 41, 59, 0.9);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(66, 153, 225, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(66, 153, 225, 0.5);
+            background: rgba(30, 41, 59, 0.8);
+        }
+        
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #a0aec0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .stat-total .stat-value { color: #4299e1; }
+        .stat-passed .stat-value { color: #00cc66; }
+        .stat-failed .stat-value { color: #ff3333; }
+        .stat-queued .stat-value { color: #ffd700; }
+        
+        /* Console Statistics */
+        .console-stats {
+            margin-bottom: 30px;
+        }
+        
+        .console-search {
+            width: 100%;
+            padding: 10px 12px;
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(66, 153, 225, 0.3);
+            border-radius: 8px;
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .console-search::placeholder {
+            color: #a0aec0;
+        }
+        
+        .console-categories {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .console-category {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(66, 153, 225, 0.2);
+            border-radius: 8px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .console-category:hover {
+            background: rgba(30, 41, 59, 0.9);
+            border-color: rgba(66, 153, 225, 0.4);
+        }
+        
+        .console-category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .console-name {
+            font-weight: 600;
+            color: #ffffff;
+            font-size: 14px;
+        }
+        
+        .console-counts {
+            display: flex;
+            gap: 15px;
+            font-size: 12px;
+        }
+        
+        .today-count {
+            color: #ffd700;
+        }
+        
+        .alltime-count {
+            color: #4299e1;
+        }
+        
+        .console-breakdown {
+            font-size: 11px;
+            color: #a0aec0;
+            margin-top: 5px;
+            padding-left: 5px;
+        }
+        
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 3px;
+        }
+        
+        /* Queue Content */
+        .queue-content {
+            margin-top: 30px;
+        }
+        
+        .queue-item {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(66, 153, 225, 0.2);
+            border-left: 4px solid #4299e1;
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 12px;
+            transition: all 0.3s;
+        }
+        
+        .queue-item:hover {
+            background: rgba(30, 41, 59, 0.9);
+            transform: translateX(-5px);
+        }
+        
+        .queue-item.form1 {
+            border-left-color: #ff3333;
+        }
+        
+        .queue-item.form2 {
+            border-left-color: #ff3333;
+        }
+        
+        .queue-item.form3 {
+            border-left-color: #00cc66;
+        }
+        
+        .queue-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .queue-item-id {
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        
+        .queue-item-type {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
             font-weight: 600;
         }
         
-        .icon {
-            font-size: 18px;
+        .queue-item-type.form1 {
+            background: rgba(255, 51, 51, 0.2);
+            color: #ff6666;
         }
         
-        /* Scrollbar styling with light blue */
+        .queue-item-type.form2 {
+            background: rgba(255, 51, 51, 0.2);
+            color: #ff6666;
+        }
+        
+        .queue-item-type.form3 {
+            background: rgba(0, 204, 102, 0.2);
+            color: #66ff99;
+        }
+        
+        .queue-item-details {
+            color: #a0aec0;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .queue-item-time {
+            color: #90cdf4;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        
+        .queue-item-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .queue-item-btn {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid rgba(66, 153, 225, 0.3);
+            border-radius: 6px;
+            background: rgba(66, 153, 225, 0.1);
+            color: #90cdf4;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+        
+        .queue-item-btn:hover {
+            background: rgba(66, 153, 225, 0.2);
+            border-color: #4299e1;
+        }
+        
+        .queue-item-btn.delete {
+            background: rgba(255, 51, 51, 0.1);
+            border-color: rgba(255, 51, 51, 0.3);
+            color: #ff6666;
+        }
+        
+        .queue-item-btn.delete:hover {
+            background: rgba(255, 51, 51, 0.2);
+        }
+        
+        .queue-empty {
+            text-align: center;
+            padding: 60px 20px;
+            color: #a0aec0;
+        }
+        
+        .queue-empty-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+        
+        .queue-empty-text {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        /* Sidebar Footer */
+        .sidebar-footer {
+            padding: 20px;
+            border-top: 1px solid rgba(66, 153, 225, 0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .sidebar-footer-btn {
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .sidebar-footer-btn.primary {
+            background: linear-gradient(135deg, #4299e1, #90cdf4);
+            color: white;
+        }
+        
+        .sidebar-footer-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.4);
+        }
+        
+        .sidebar-footer-btn.secondary {
+            background: rgba(66, 153, 225, 0.1);
+            color: #90cdf4;
+            border: 1px solid rgba(66, 153, 225, 0.3);
+        }
+        
+        .sidebar-footer-btn.secondary:hover {
+            background: rgba(66, 153, 225, 0.2);
+        }
+        
+        /* Backdrop */
+        .sidebar-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+            backdrop-filter: blur(2px);
+        }
+        
+        .sidebar-backdrop.show {
+            display: block;
+        }
+        
+        /* Info Sections with Clean Border */
+        .info-section {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px;
+            border: 1px solid rgba(66, 153, 225, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .info-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #8b5cf6, #3b82f6);
+        }
+        
+        .info-title {
+            color: #90cdf4;
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-content {
+            color: #ffffff;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .info-content strong {
+            color: #ffd700;
+        }
+        
+        .info-list {
+            list-style: none;
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        
+        .info-list li {
+            margin-bottom: 10px;
+            padding-left: 10px;
+            position: relative;
+        }
+        
+        .info-list li:before {
+            content: "•";
+            color: #4299e1;
+            font-size: 20px;
+            position: absolute;
+            left: -15px;
+        }
+        
+        /* Notes with clean background */
+        .info-note {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(66, 153, 225, 0.2);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #ffffff;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        /* Red Important Warning Box */
+        .warning-box {
+            background: rgba(255, 51, 51, 0.1);
+            border: 1px solid rgba(255, 51, 51, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #ff9999;
+            font-size: 14px;
+        }
+        
+        .warning-title {
+            color: #ff6666;
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Keyboard Shortcuts Panel - RESPONSIVE FIX */
+        .keyboard-shortcuts-panel {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 30px 30px 0;
+            border: 1px solid rgba(66, 153, 225, 0.2);
+            position: relative;
+            overflow: hidden;
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+        }
+        
+        .keyboard-shortcuts-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #8b5cf6, #3b82f6);
+        }
+        
+        .shortcut-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #334155;
+        }
+        
+        .shortcut-item:last-child {
+            border-bottom: none;
+        }
+        
+        .shortcut-key {
+            background: #1e293b;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-family: monospace;
+            color: #fbbf24;
+            border: 1px solid #475569;
+        }
+        
+        .shortcut-desc {
+            color: #cbd5e1;
+        }
+        
+        /* Footer Signature with MULTI-COLOR NAME */
+        .footer-signature {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(66, 153, 225, 0.2);
+        }
+        
+        .created-by {
+            color: #ffffff;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .rahim-name {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(
+                90deg,
+                #60a5fa,    /* Light Blue */
+                #ffffff,    /* White */
+                #f9a8d4,    /* Light Pink */
+                #d8b4fe,    /* Light Purple */
+                #fbbf24,    /* Amber */
+                #34d399,    /* Emerald */
+                #f87171,    /* Red */
+                #60a5fa     /* Back to Light Blue */
+            );
+            background-size: 400% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 8s ease infinite;
+            padding: 5px 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .monkey-emojis {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .monkey {
+            font-size: 24px;
+            animation: bounce 1s infinite alternate;
+        }
+        
+        .monkey:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .monkey:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes bounce {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-10px);
+            }
+        }
+        
+        /* Loading Spinner */
+        .loading-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .btn-primary.loading .loading-spinner {
+            display: inline-block;
+        }
+        
+        .btn-primary.loading .icon {
+            display: none;
+        }
+        
+        /* Scrollbar */
         ::-webkit-scrollbar {
-            width: 10px;
+            width: 8px;
         }
         
         ::-webkit-scrollbar-track {
             background: rgba(30, 41, 59, 0.5);
-            border-radius: 10px; /* ROUNDED EDGES */
+            border-radius: 4px;
         }
         
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #4299e1 0%, #90cdf4 100%); /* LIGHT BLUE */
-            border-radius: 10px; /* ROUNDED EDGES */
+            background: linear-gradient(135deg, #4299e1 0%, #90cdf4 100%);
+            border-radius: 4px;
         }
         
         ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, #3182ce 0%, #63b3ed 100%); /* DARKER LIGHT BLUE */
+            background: linear-gradient(135deg, #3182ce 0%, #63b3ed 100%);
+        }
+        
+        /* Tabs for Console Stats */
+        .console-tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .console-tab {
+            flex: 1;
+            padding: 8px;
+            text-align: center;
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(66, 153, 225, 0.2);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            color: #a0aec0;
+            transition: all 0.3s;
+        }
+        
+        .console-tab.active {
+            background: rgba(66, 153, 225, 0.2);
+            color: #90cdf4;
+            border-color: rgba(66, 153, 225, 0.4);
+        }
+        
+        .console-tab:hover:not(.active) {
+            background: rgba(30, 41, 59, 0.9);
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .button-group {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .keyboard-shortcuts-panel {
+                margin: 20px;
+                max-width: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .button-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-selector {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                left: -100%;
+            }
+            
+            .main-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .info-section, .keyboard-shortcuts-panel {
+                margin: 20px;
+                padding: 20px;
+            }
+            
+            .keyboard-shortcuts-panel {
+                margin-top: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🎮 Console Test Assistant</h1>
-            <p class="subtitle">Generate pre-filled Google Forms for console testing</p>
+    <!-- Sidebar -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="closeSidebar()"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>
+                📊 Dashboard & Queue
+            </h2>
+            <button class="close-sidebar" onclick="closeSidebar()">×</button>
         </div>
         
+        <div class="sidebar-content">
+            <!-- Big Monkey in Sidebar -->
+            <div class="sidebar-monkey">🐵</div>
+            
+            <!-- Stats Dashboard -->
+            <div class="stats-dashboard">
+                <div class="stats-title">
+                    <i class="fas fa-chart-bar"></i>
+                    Statistics
+                </div>
+                <div class="stats-tabs">
+                    <div class="stats-tab active" onclick="switchStatsTab('today')">Today</div>
+                    <div class="stats-tab" onclick="switchStatsTab('alltime')">All Time</div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card stat-total">
+                        <div class="stat-value" id="statTotal">0</div>
+                        <div class="stat-label">Total Forms</div>
+                    </div>
+                    <div class="stat-card stat-passed">
+                        <div class="stat-value" id="statPassed">0</div>
+                        <div class="stat-label">Passed</div>
+                    </div>
+                    <div class="stat-card stat-failed">
+                        <div class="stat-value" id="statFailed">0</div>
+                        <div class="stat-label">Failed</div>
+                    </div>
+                    <div class="stat-card stat-queued">
+                        <div class="stat-value" id="statQueued">0</div>
+                        <div class="stat-label">In Queue</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Console Statistics -->
+            <div class="console-stats">
+                <div class="stats-title">
+                    <i class="fas fa-gamepad"></i>
+                    Console Statistics
+                </div>
+                <input type="text" class="console-search" id="consoleSearch" placeholder="Search consoles..." onkeyup="filterConsoles()">
+                
+                <div class="console-tabs">
+                    <div class="console-tab active" onclick="switchConsoleTab('today')">Today</div>
+                    <div class="console-tab" onclick="switchConsoleTab('alltime')">All Time</div>
+                </div>
+                
+                <div class="console-categories" id="consoleCategories">
+                    <!-- Console categories will be inserted here -->
+                </div>
+            </div>
+            
+            <!-- Queue Content -->
+            <div class="queue-content">
+                <div class="stats-title">
+                    <i class="fas fa-list"></i>
+                    Console Queue (<span id="queueCount">0</span>)
+                </div>
+                <div id="queueContent">
+                    <!-- Queue items will be inserted here -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="sidebar-footer">
+            <button class="sidebar-footer-btn primary" onclick="submitAllQueued()" id="submitAllBtn">
+                📤 Open All Forms
+            </button>
+            <button class="sidebar-footer-btn secondary" onclick="exportQueueAsCSV()">
+                💾 Export as CSV
+            </button>
+            <button class="sidebar-footer-btn secondary" onclick="clearQueue()" style="color: #ff6666; border-color: rgba(255, 51, 51, 0.3);">
+                🗑️ Clear Queue
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="main-header">
+            <div class="hamburger-menu" onclick="openSidebar()">
+                ☰
+            </div>
+            <div class="header-title">
+                <h2>🎮 Console Auto Form</h2>
+                <p>Automated Console Testing Tool</p>
+            </div>
+            <!-- NAME REMOVED FROM HEADER -->
+        </div>
+        
+        <!-- Form Section -->
         <div class="form-section" autocomplete="off">
-            <!-- FORM SELECTION -->
+            <!-- Form Selector -->
             <div class="form-group">
                 <label class="required">SELECT FORM TYPE *</label>
                 <div class="form-selector">
                     <div class="form-option selected" onclick="selectForm('form1')" id="form1Option" data-form="form1">
                         <span class="form-icon">🟢</span>
-                        <div class="form-name">LIVE TESTING</div>
+                        <div class="form-name">FAILED TEST</div>
                         <div class="form-desc">Detailed testing with cascade logic</div>
                     </div>
                     <div class="form-option" onclick="selectForm('form2')" id="form2Option" data-form="form2">
@@ -678,262 +1330,299 @@
                     <div class="form-option" onclick="selectForm('form3')" id="form3Option" data-form="form3">
                         <span class="form-icon">✅</span>
                         <div class="form-name">PASS ALL TESTS</div>
-                        <div class="form-desc">All tests passed successfully</div>
+                        <div class="form-desc">All tests passed or not testable</div>
                     </div>
                 </div>
                 <div class="preview-box" id="formPreview">
-                    Currently selected: <strong style="color:#ff3333">LIVE TESTING</strong> — Detailed testing with cascade logic
+                    Currently selected: <strong style="color:#ff3333">FAILED TEST</strong> — Detailed testing with cascade logic
                 </div>
             </div>
             
+            <!-- Basic Information -->
             <div class="form-group">
-                <label class="required" for="item_id">ITEM ID *</label>
-                <input type="text" id="item_id" placeholder="Enter Item ID (e.g., CONS-1234)" autocomplete="off">
-            </div>
-            
-            <div class="form-group">
-                <label class="required" for="serial">SERIAL NUMBER *</label>
-                <input type="text" id="serial" placeholder="Enter Serial Number" autocomplete="off">
-            </div>
-            
-            <!-- LIVE FORM FIELDS (shown by default) -->
-            <div class="form-group" id="liveFormFields">
-                <label class="required" for="model">MODEL *</label>
-                <select id="model" autocomplete="off">
-                    <option value="">-- Select Model --</option>
-                    <!-- ASUS -->
-                    <option value="Asus ROG Ally (2023)">Asus ROG Ally (2023)</option>
-                    <option value="Asus ROG Ally X (2024)">Asus ROG Ally X (2024)</option>
-                    
-                    <!-- Lenovo -->
-                    <option value="Lenovo Legion Go">Lenovo Legion Go</option>
-                    
-                    <!-- Nintendo Handhelds -->
-                    <option value="Nintendo DS">Nintendo DS</option>
-                    <option value="Nintendo 2DS (Original)">Nintendo 2DS (Original)</option>
-                    <option value="Nintendo 3DS (Original)">Nintendo 3DS (Original)</option>
-                    <option value="Nintendo 3DS XL">Nintendo 3DS XL</option>
-                    <option value="New Nintendo 3DS">New Nintendo 3DS</option>
-                    <option value="New Nintendo 3DS XL">New Nintendo 3DS XL</option>
-                    <option value="New Nintendo 2DS XL">New Nintendo 2DS XL</option>
-                    <option value="Nintendo DSi">Nintendo DSi</option>
-                    <option value="Nintendo DSi XL">Nintendo DSi XL</option>
-                    
-                    <!-- Nintendo Consoles -->
-                    <option value="Nintendo 64 (Original)">Nintendo 64 (Original)</option>
-                    <option value="Nintendo Switch">Nintendo Switch</option>
-                    <option value="Nintendo Switch 2">Nintendo Switch 2</option>
-                    <option value="Nintendo Game Boy">Nintendo Game Boy</option>
-                    <option value="Nintendo Game Boy Advance">Nintendo Game Boy Advance</option>
-                    <option value="Nintendo Wii">Nintendo Wii</option>
-                    <option value="Nintendo Wii U">Nintendo Wii U</option>
-                    
-                    <!-- PlayStation -->
-                    <option value="PlayStation 1">PlayStation 1</option>
-                    <option value="PlayStation 2">PlayStation 2</option>
-                    <option value="PlayStation 3">PlayStation 3</option>
-                    <option value="PlayStation 4">PlayStation 4</option>
-                    <option value="PlayStation 4 slim">PlayStation 4 slim</option>
-                    <option value="PlayStation 4 pro">PlayStation 4 pro</option>
-                    <option value="PlayStation 5">PlayStation 5</option>
-                    <option value="PlayStation 5 digital">PlayStation 5 digital</option>
-                    <option value="PlayStation 5 pro">PlayStation 5 pro</option>
-                    <option value="PlayStation Portal 2025">PlayStation Portal 2025</option>
-                    <option value="PlayStation Portable">PlayStation Portable</option>
-                    <option value="PlayStation Vita">PlayStation Vita</option>
-                    
-                    <!-- Steam -->
-                    <option value="Steam Deck">Steam Deck</option>
-                    
-                    <!-- Xbox -->
-                    <option value="Xbox (original)">Xbox (original)</option>
-                    <option value="Xbox 360">Xbox 360</option>
-                    <option value="Xbox One (Original)">Xbox One (Original)</option>
-                    <option value="Xbox One S">Xbox One S</option>
-                    <option value="Xbox One X">Xbox One X</option>
-                    <option value="Xbox Series S">Xbox Series S</option>
-                    <option value="Xbox Series X">Xbox Series X</option>
-                    
-                    <!-- Other -->
-                    <option value="device not supported">device not supported</option>
-                </select>
-            </div>
-            
-            <div class="form-group" id="liveFailurePoint">
-                <label class="required" for="failure_point">FIRST FAILURE POINT *</label>
-                <select id="failure_point" onchange="updateFailureReasons()" autocomplete="off">
-                    <option value="">-- Select where it first failed --</option>
-                    <option value="auth">Authenticity check</option>
-                    <option value="boot">Powering on and booting up</option>
-                    <option value="buttons">Buttons test</option>
-                    <option value="jailbreak">Jailbreak test</option>
-                    <option value="network">Network connections test</option>
-                    <option value="accounts">Accounts check</option>
-                    <option value="ports">Ports test</option>
-                    <option value="disc_storage">Disc drive and storage test</option>
-                    <option value="battery">Battery test</option>
-                    <option value="display">Display test</option>
-                    <option value="speaker_mic">Speaker and microphone test</option>
-                    <option value="load">Load test</option>
-                    <option value="noise_smell">Noise and smell test</option>
-                    <option value="controller">Controller test (incl. vibration)</option>
-                    <option value="accessories">Accessories</option>
-                </select>
-            </div>
-            
-            <div class="form-group" id="liveFailureReason">
-                <label class="required" for="failure_reason">FAILURE REASON *</label>
-                <select id="failure_reason" autocomplete="off">
-                    <option value="">Select failure point first</option>
-                </select>
-                <div class="preview-box" id="previewBox">
-                    Failure reason will be auto-filled based on your selection
+                <div class="form-row">
+                    <div>
+                        <label class="required" for="item_id">ITEM ID *</label>
+                        <input type="text" id="item_id" placeholder="Enter Item ID (e.g., 0012345)" autocomplete="off">
+                    </div>
+                    <div>
+                        <label class="required" for="serial">SERIAL NUMBER *</label>
+                        <input type="text" id="serial" placeholder="Enter Serial Number" autocomplete="off">
+                    </div>
                 </div>
             </div>
             
-            <!-- REJECTION FORM FIELDS (hidden by default) -->
-            <div class="form-group" id="rejectionFormFields" style="display: none;">
-                <label class="required" for="rejection_reason">REJECTION REASON *</label>
-                <select id="rejection_reason" autocomplete="off">
-                    <option value="">-- Select Rejection Reason --</option>
-                    <option value="ARRIVED_DAMAGED">ARRIVED_DAMAGED</option>
-                    <option value="BROKEN_SEAL">BROKEN_SEAL</option>
-                    <option value="BLACKLISTED_DEVICE">BLACKLISTED_DEVICE</option>
-                    <option value="CONSOLE_ACCESSORY_ISSUES">CONSOLE_ACCESSORY_ISSUES</option>
-                    <option value="CONTROLLER_ISSUES">CONTROLLER_ISSUES</option>
-                    <option value="CRITICAL_ACCESSORY_ISSUES">CRITICAL_ACCESSORY_ISSUES</option>
-                    <option value="CRITICAL_CONDITION_MISMATCH">CRITICAL_CONDITION_MISMATCH</option>
-                    <option value="DAMAGED_IN_WAREHOUSE">DAMAGED_IN_WAREHOUSE</option>
-                    <option value="EMPTY_PARCEL">EMPTY_PARCEL</option>
-                    <option value="JAIL_BROKEN_OR_ROOTED">JAIL_BROKEN_OR_ROOTED</option>
-                    <option value="LOCKED_DEVICE">LOCKED_DEVICE</option>
-                    <option value="LIKELY_COUNTERFEIT_DEVICE">LIKELY_COUNTERFEIT_DEVICE</option>
-                    <option value="LIQUID_DAMAGE">LIQUID_DAMAGE</option>
-                    <option value="MULTIPLE_ITEMS">MULTIPLE_ITEMS</option>
-                    <option value="NOT_STARTING">NOT_STARTING</option>
-                    <option value="SAFETY_ISSUES">SAFETY_ISSUES</option>
-                    <option value="SEAL_ISSUES">SEAL_ISSUES</option>
-                    <option value="SWOLLEN_BATTERY">SWOLLEN_BATTERY</option>
-                    <option value="UNSUPPORTED_DEVICE">UNSUPPORTED_DEVICE</option>
-                    <option value="WRONG_ITEM">WRONG_ITEM</option>
-                    <option value="WRONG_MODEL">WRONG_MODEL</option>
-                    <option value="WRONG_SPECIFICATIONS">WRONG_SPECIFICATIONS</option>
-                    <option value="WRONG_STORAGE_CAPACITY">WRONG_STORAGE CAPACITY</option>
-                    <option value="DISC_DRIVE_ISSUES">DISC_DRIVE_ISSUES</option>
-                    <option value="SOFTWARE_ISSUES">SOFTWARE_ISSUES</option>
-                </select>
-            </div>
-            
-            <!-- PASS ALL TESTS SIMPLE FORM (hidden by default) -->
-            <div class="form-group" id="passAllFormFields" style="display: none;">
-                <div class="instruction-step" style="background: rgba(0, 204, 102, 0.1); border-left-color: #00cc66;">
-                    <span class="step-number" style="background: linear-gradient(135deg, #00cc66, #66ff99);">✅</span>
-                    <strong style="color: #00cc66;">PASS ALL TESTS</strong>
-                    <br>
-                    This will generate a form with all tests marked as "Passed" or "Not testable" based on console type.
-                    Just fill in Item ID, Serial Number, and Model above, then click "Generate & Open Form".
+            <!-- Live Form Fields - HIDDEN FOR FORM3 -->
+            <div id="liveFormFields">
+                <div class="form-group">
+                    <label class="required" for="model">MODEL *</label>
+                    <select id="model" autocomplete="off" onchange="updateNotTestableInfo()">
+                        <option value="">-- Select Model --</option>
+                        <option value="Asus ROG Ally (2023)">Asus ROG Ally (2023)</option>
+                        <option value="Asus ROG Ally X (2024)">Asus ROG Ally X (2024)</option>
+                        <option value="Lenovo Legion Go">Lenovo Legion Go</option>
+                        <option value="Nintendo DS">Nintendo DS</option>
+                        <option value="Nintendo 2DS (Original)">Nintendo 2DS (Original)</option>
+                        <option value="Nintendo 3DS (Original)">Nintendo 3DS (Original)</option>
+                        <option value="Nintendo 3DS XL">Nintendo 3DS XL</option>
+                        <option value="New Nintendo 3DS">New Nintendo 3DS</option>
+                        <option value="New Nintendo 3DS XL">New Nintendo 3DS XL</option>
+                        <option value="New Nintendo 2DS XL">New Nintendo 2DS XL</option>
+                        <option value="Nintendo DSi">Nintendo DSi</option>
+                        <option value="Nintendo DSi XL">Nintendo DSi XL</option>
+                        <option value="Nintendo 64 (Original)">Nintendo 64 (Original)</option>
+                        <option value="Nintendo Switch">Nintendo Switch</option>
+                        <option value="Nintendo Switch 2">Nintendo Switch 2</option>
+                        <option value="Nintendo Game Boy">Nintendo Game Boy</option>
+                        <option value="Nintendo Game Boy Advance">Nintendo Game Boy Advance</option>
+                        <option value="Nintendo Wii">Nintendo Wii</option>
+                        <option value="Nintendo Wii U">Nintendo Wii U</option>
+                        <option value="PlayStation 1">PlayStation 1</option>
+                        <option value="PlayStation 2">PlayStation 2</option>
+                        <option value="PlayStation 3">PlayStation 3</option>
+                        <option value="PlayStation 4">PlayStation 4</option>
+                        <option value="PlayStation 4 slim">PlayStation 4 slim</option>
+                        <option value="PlayStation 4 pro">PlayStation 4 pro</option>
+                        <option value="PlayStation 5">PlayStation 5</option>
+                        <option value="PlayStation 5 digital">PlayStation 5 digital</option>
+                        <option value="PlayStation 5 pro">PlayStation 5 pro</option>
+                        <option value="PlayStation Portal 2025">PlayStation Portal 2025</option>
+                        <option value="PlayStation Portable">PlayStation Portable</option>
+                        <option value="PlayStation Vita">PlayStation Vita</option>
+                        <option value="Steam Deck">Steam Deck</option>
+                        <option value="Xbox (original)">Xbox (original)</option>
+                        <option value="Xbox 360">Xbox 360</option>
+                        <option value="Xbox One (Original)">Xbox One (Original)</option>
+                        <option value="Xbox One S">Xbox One S</option>
+                        <option value="Xbox One X">Xbox One X</option>
+                        <option value="Xbox Series S">Xbox Series S</option>
+                        <option value="Xbox Series X">Xbox Series X</option>
+                        <option value="device not supported">device not supported</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" id="failureFields">
+                    <div class="form-row">
+                        <div>
+                            <label class="required" for="failure_point">FIRST FAILURE POINT *</label>
+                            <select id="failure_point" onchange="updateFailureReasons()" autocomplete="off">
+                                <option value="">-- Select where it first failed --</option>
+                                <option value="auth">Authenticity check</option>
+                                <option value="boot">Powering on and booting up</option>
+                                <option value="buttons">Buttons test</option>
+                                <option value="jailbreak">Jailbreak test</option>
+                                <option value="network">Network connections test</option>
+                                <option value="accounts">Accounts check</option>
+                                <option value="ports">Ports test</option>
+                                <option value="disc_storage">Disc drive and storage test</option>
+                                <option value="battery">Battery test</option>
+                                <option value="display">Display test</option>
+                                <option value="speaker_mic">Speaker and microphone test</option>
+                                <option value="load">Load test</option>
+                                <option value="noise_smell">Noise and smell test</option>
+                                <option value="controller">Controller test (incl. vibration)</option>
+                                <option value="accessories">Accessories</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="required" for="failure_reason">FAILURE REASON *</label>
+                            <select id="failure_reason" autocomplete="off">
+                                <option value="">Select failure point first</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="preview-box" id="previewBox">
+                        Failure reason will be auto-filled based on your selection
+                    </div>
                 </div>
             </div>
             
+            <!-- Rejection Form Fields -->
+            <div id="rejectionFormFields" style="display: none;">
+                <div class="form-group">
+                    <label class="required" for="rejection_reason">REJECTION REASON *</label>
+                    <select id="rejection_reason" autocomplete="off">
+                        <option value="">-- Select Rejection Reason --</option>
+                        <option value="ARRIVED_DAMAGED">ARRIVED_DAMAGED</option>
+                        <option value="BROKEN_SEAL">BROKEN_SEAL</option>
+                        <option value="BLACKLISTED_DEVICE">BLACKLISTED_DEVICE</option>
+                        <option value="CONSOLE_ACCESSORY_ISSUES">CONSOLE_ACCESSORY_ISSUES</option>
+                        <option value="CONTROLLER_ISSUES">CONTROLLER_ISSUES</option>
+                        <option value="CRITICAL_ACCESSORY_ISSUES">CRITICAL_ACCESSORY_ISSUES</option>
+                        <option value="CRITICAL_CONDITION_MISMATCH">CRITICAL_CONDITION_MISMATCH</option>
+                        <option value="DAMAGED_IN_WAREHOUSE">DAMAGED_IN_WAREHOUSE</option>
+                        <option value="EMPTY_PARCEL">EMPTY_PARCEL</option>
+                        <option value="JAIL_BROKEN_OR_ROOTED">JAIL_BROKEN_OR_ROOTED</option>
+                        <option value="LOCKED_DEVICE">LOCKED_DEVICE</option>
+                        <option value="LIKELY_COUNTERFEIT_DEVICE">LIKELY_COUNTERFEIT_DEVICE</option>
+                        <option value="LIQUID_DAMAGE">LIQUID_DAMAGE</option>
+                        <option value="MULTIPLE_ITEMS">MULTIPLE_ITEMS</option>
+                        <option value="NOT_STARTING">NOT_STARTING</option>
+                        <option value="SAFETY_ISSUES">SAFETY_ISSUES</option>
+                        <option value="SEAL_ISSUES">SEAL_ISSUES</option>
+                        <option value="SWOLLEN_BATTERY">SWOLLEN_BATTERY</option>
+                        <option value="UNSUPPORTED_DEVICE">UNSUPPORTED_DEVICE</option>
+                        <option value="WRONG_ITEM">WRONG_ITEM</option>
+                        <option value="WRONG_MODEL">WRONG_MODEL</option>
+                        <option value="WRONG_SPECIFICATIONS">WRONG_SPECIFICATIONS</option>
+                        <option value="WRONG_STORAGE_CAPACITY">WRONG_STORAGE_CAPACITY</option>
+                        <option value="DISC_DRIVE_ISSUES">DISC_DRIVE_ISSUES</option>
+                        <option value="SOFTWARE_ISSUES">SOFTWARE_ISSUES</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Pass All Form Fields -->
+            <div id="passAllFormFields" style="display: none;">
+                <div class="preview-box" style="background: rgba(0, 204, 102, 0.1); border-color: rgba(0, 204, 102, 0.3);">
+                    <strong style="color: #00cc66;">✅ PASS ALL TESTS MODE</strong><br>
+                    All tests will be marked as "Passed" or "Not testable" based on console type.
+                </div>
+            </div>
+            
+            <!-- Not Testable Info Box -->
+            <div class="not-testable-box" id="notTestableBox">
+                <div class="not-testable-title">
+                    ⚠️ Tests marked as "Not testable" for this console:
+                </div>
+                <ul class="not-testable-list" id="notTestableList">
+                    <!-- Will be populated by JavaScript -->
+                </ul>
+            </div>
+            
+            <!-- Action Buttons -->
             <div class="button-group">
-                <button class="btn btn-primary" onclick="generateForm()">
-                    <span class="icon">📋</span>
-                    Generate & Open Form
+                <button class="btn btn-success" onclick="generateAndOpenForm()">
+                    <i class="fas fa-rocket"></i>
+                    Open Form Now
                 </button>
-                <button class="btn btn-secondary" onclick="showInstructions()">
-                    <span class="icon">❔</span>
-                    Show Instructions
+                <button class="btn btn-primary" onclick="addToQueue()">
+                    <i class="fas fa-plus-circle"></i>
+                    Add to Queue
+                </button>
+                <button class="btn btn-clear" onclick="clearForm()">
+                    <i class="fas fa-redo"></i>
+                    Clear Form
                 </button>
             </div>
             
-            <!-- INSTRUCTIONS SECTION -->
-            <div class="instructions-section" id="instructionsBox">
-                <div class="instructions-title">
-                    <span class="icon">📝</span>
-                    HOW TO USE THIS TOOL
-                    <span class="title-monkey">🐒</span>
-                    <span class="icon">🎮</span>
-                </div>
-                
-                <div class="instruction-step">
-                    <span class="step-number">1</span>
-                    <strong>Select Form Type</strong>
-                    <br>
-                    Choose between LIVE TESTING (detailed cascade logic), REJECTION (single reason), or PASS ALL TESTS (all tests passed).
-                </div>
-                
-                <div class="instruction-step">
-                    <span class="step-number">2</span>
-                    <strong>Enter Basic Information</strong>
-                    <br>
-                    Fill in the Item ID and Serial Number (both are required).
-                </div>
-                
-                <div class="instruction-step">
-                    <span class="step-number">3</span>
-                    <strong>For LIVE Form Only</strong>
-                    <br>
-                    Select the Model, then choose where it first failed and the specific failure reason.
-                </div>
-                
-                <div class="instruction-step">
-                    <span class="step-number">4</span>
-                    <strong>For REJECTION Form Only</strong>
-                    <br>
-                    Select a single rejection reason from the dropdown list.
-                </div>
-                
-                <div class="instruction-step">
-                    <span class="step-number">5</span>
-                    <strong>For PASS ALL TESTS Form</strong>
-                    <br>
-                    Just fill in Item ID, Serial Number, and Model - tests will be marked as "Passed" or "Not testable" based on console type.
-                </div>
-                
-                <div class="instruction-step">
-                    <span class="step-number">6</span>
-                    <strong>Generate the Form</strong>
-                    <br>
-                    Click "Generate & Open Form" - a new tab will open with the pre-filled form.
-                </div>
-                
-                <!-- RED BOX FOR IMPORTANT WARNING -->
-                <div class="important-warning">
-                    <strong>⚠️ IMPORTANT: Check Failure Reasons</strong>
-                    Google Forms may not pre-fill failure reasons automatically. After the form opens, you MUST check and select the failure reason manually if it's not already selected.
-                </div>
-            </div>
-            
+            <!-- Success Message -->
             <div class="success-message" id="successMessage">
-                ✅ Form generated successfully! Check the new tab in your browser.<br>
-                <small>Remember to verify the failure reason is selected correctly.</small>
+                ✅ Form added to queue successfully!<br>
+                <small>Click the hamburger menu to view your queue.</small>
+            </div>
+        </div>
+        
+        <!-- Instructions Section with Keyboard Shortcuts on the right - RESPONSIVE FIX -->
+        <div style="display: flex; flex-wrap: wrap; gap: 30px; margin: 30px;">
+            <!-- How to Use This Tool -->
+            <div class="info-section" style="flex: 1; min-width: 300px;">
+                <div class="info-title">
+                    <i class="fas fa-graduation-cap"></i>
+                    How to Use This Tool
+                </div>
+                <div class="info-content">
+                    1. <strong>Select Form Type:</strong> Failed Test (detailed), Rejection (single reason), or Pass All (all tests passed).
+                    <br><br>
+                    2. <strong>Fill Basic Info:</strong> Item ID & Serial Number (required).
+                    <br><br>
+                    3. <strong>For Failed Test Form:</strong> Select Model, then where it failed and why.
+                    <br><br>
+                    4. <strong>For Rejection Form:</strong> Choose a reason from the list.
+                    <br><br>
+                    5. <strong>For Pass All Form:</strong> Just fill Model - tests auto-mark as Passed/Not testable.
+                    <br><br>
+                    <div class="warning-box">
+                        <div class="warning-title">
+                            ⚠️ IMPORTANT
+                        </div>
+                        Google Forms may not pre-fill failure reasons automatically. After the form opens, you MUST check and select the failure reason manually if it's not already selected.
+                    </div>
+                </div>
             </div>
             
-            <!-- THREE MONKEYS AT THE BOTTOM -->
-            <div class="three-monkeys">
-                <span class="monkey-icon">🙈</span>
-                <span class="monkey-icon">🙉</span>
-                <span class="monkey-icon">🙊</span>
+            <!-- Keyboard Shortcuts - RESPONSIVE FIX -->
+            <div class="keyboard-shortcuts-panel">
+                <div class="info-title">
+                    <i class="fas fa-keyboard"></i>
+                    Keyboard Shortcuts
+                </div>
+                <div class="info-content">
+                    <div class="shortcut-item">
+                        <span class="shortcut-key">Ctrl + Enter</span>
+                        <span class="shortcut-desc">Open Form</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="shortcut-key">Ctrl + Q</span>
+                        <span class="shortcut-desc">Add to Queue</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="shortcut-key">Ctrl + 1/2/3</span>
+                        <span class="shortcut-desc">Switch Form Type</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="shortcut-key">Ctrl + L</span>
+                        <span class="shortcut-desc">Open Sidebar</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="shortcut-key">F2</span>
+                        <span class="shortcut-desc">Swap ID/Serial</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="shortcut-key">Esc</span>
+                        <span class="shortcut-desc">Close Sidebar</span>
+                    </div>
+                </div>
             </div>
-            
-            <!-- SIGNATURE SECTION WITH GLOWING COLORS -->
-            <div class="signature-section">
-                <div class="signature">Rahim</div>
-                <div class="created-by">Created by</div>
+        </div>
+        
+        <!-- About the Queue Section -->
+        <div class="info-section" style="margin: 30px;">
+            <div class="info-title">
+                <i class="fas fa-info-circle"></i>
+                About the Queue
             </div>
+            <div class="info-content">
+                <div class="info-note">
+                    <strong>📋 Queue Features:</strong>
+                    <ul class="info-list">
+                        <li>Store forms for offline work</li>
+                        <li>Batch submit when online</li>
+                        <li>Data saved in browser</li>
+                        <li>Export to CSV</li>
+                        <li>Open all queued forms with one click</li>
+                    </ul>
+                </div>
+                
+                <div class="info-note">
+                    <strong>📊 Statistics:</strong> Tracks all forms processed today and all time.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer Signature with MULTI-COLOR NAME -->
+        <div class="footer-signature">
+            <div class="monkey-emojis">
+                <div class="monkey">🙈</div>
+                <div class="monkey">🙉</div>
+                <div class="monkey">🙊</div>
+            </div>
+            <div class="created-by">Created by</div>
+            <div class="rahim-name">RAHIM</div>
         </div>
     </div>
 
-    <!-- JavaScript remains exactly the same -->
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <script>
         // Form URLs
         const FORM_URLS = {
-            form1: "https://docs.google.com/forms/d/e/1FAIpQLSdw_dydIgIk2lDK02LYyfi-4ytC5i7EEcjwCBV-t2qmcRU-aQ/viewform",
+            form1: "https://docs.google.com/forms/d/e/1FAIpQLSdw_dydIgIk2lDK02LYyfi-4ytC5i7EEcjwCBV-t2qmcRU-aQ/viewform?pli=1&pli=1",
             form2: "https://docs.google.com/forms/d/e/1FAIpQLSfBIRKz7rHYnRKip_CinYR1dPN7lUkor1B3goSxDQdrdktJ5g/viewform",
-            form3: "https://docs.google.com/forms/d/e/1FAIpQLSdw_dydIgIk2lDK02LYyfi-4ytC5i7EEcjwCBV-t2qmcRU-aQ/viewform"
+            form3: "https://docs.google.com/forms/d/e/1FAIpQLSdw_dydIgIk2lDK02LYyfi-4ytC5i7EEcjwCBV-t2qmcRU-aQ/viewform?pli=1&pli=1"
         };
 
-        // Field IDs for FORM 1 (LIVE form - Detailed testing)
         const FIELD_IDS_FORM1 = {
             item_id: "entry.264714925",
             serial: "entry.1467120290",
@@ -971,7 +1660,6 @@
             general: "entry.382102081"
         };
 
-        // Field IDs for FORM 2 (REJECTION form - Simple rejection)
         const FIELD_IDS_FORM2 = {
             item_id: "entry.264714925",
             serial: "entry.1215422911",
@@ -979,30 +1667,6 @@
             general: "entry.382102081"
         };
 
-        // Currently selected form
-        let CURRENT_FORM = 'form1';
-        let CURRENT_FIELD_IDS = FIELD_IDS_FORM1;
-
-        // Test mapping
-        const TEST_DISPLAY_NAMES = {
-            auth: "Authenticity check",
-            boot: "Powering on and booting up",
-            buttons: "Buttons test",
-            jailbreak: "Jailbreak test",
-            network: "Network connections test",
-            accounts: "Accounts check",
-            ports: "Ports test",
-            disc_storage: "Disc drive and storage test",
-            battery: "Battery test",
-            display: "Display test",
-            speaker_mic: "Speaker and microphone test",
-            load: "Load test",
-            noise_smell: "Noise and smell test",
-            controller: "Controller test (incl. vibration)",
-            accessories: "Accessories"
-        };
-
-        // Failure reasons for each test
         const FAILURE_REASONS = {
             auth: ["Likely nongenuine parts", "Likely counterfeit device", "Seal issues", "Other"],
             boot: ["Not starting", "Short circuiting device", "Liquid damaged device", "Video signal errors", "Software error", "Charging failure", "Wireless charging failure", "Other"],
@@ -1011,7 +1675,7 @@
             network: ["WiFi issues", "Bluetooth issues", "Ethernet issues", "NFC issues", "Other"],
             accounts: ["Locked Device", "Blacklisted Device", "Other"],
             ports: ["Port issues", "HDMI issues", "Video signal errors", "USB issues", "Other"],
-            disc_storage: ["Disc drive issue", "Storage device issues", "SD card issues", "Other"],
+            disc_storage: ["Disc drive issues", "Storage device issues", "SD card issues", "Other"],
             battery: ["Battery issues", "Safety issues", "Swollen battery", "Does not charge", "Other"],
             display: ["Screen issues", "Other"],
             speaker_mic: ["Speaker issues", "Microphone issues", "Other"],
@@ -1021,43 +1685,27 @@
             accessories: ["Critical accessory issues", "Camera issues", "Flash issues", "Other"]
         };
 
-        // Test order for cascade logic
         const TESTS = ["auth", "boot", "buttons", "jailbreak", "network", "accounts", "ports", "disc_storage", "battery", "display", "speaker_mic", "load", "noise_smell", "controller", "accessories"];
 
-        // Models that need special handling for PASS ALL TESTS
         const SPECIAL_CONSOLES = {
-            // PlayStation consoles - battery, display, speaker tests not testable
             "PlayStation 3": ["battery", "display", "speaker_mic"],
             "PlayStation 4": ["battery", "display", "speaker_mic"],
             "PlayStation 4 slim": ["battery", "display", "speaker_mic"],
             "PlayStation 4 pro": ["battery", "display", "speaker_mic"],
             "PlayStation 5": ["battery", "display", "speaker_mic"],
+            "PlayStation 5 digital": ["battery", "display", "speaker_mic", "disc_storage"],
             "PlayStation 5 pro": ["battery", "display", "speaker_mic"],
-            
-            // Xbox consoles - battery, display, speaker tests not testable
             "Xbox One (Original)": ["battery", "display", "speaker_mic"],
             "Xbox One S": ["battery", "display", "speaker_mic"],
             "Xbox One X": ["battery", "display", "speaker_mic"],
             "Xbox Series X": ["battery", "display", "speaker_mic"],
             "Xbox 360": ["battery", "display", "speaker_mic"],
-            
-            // Digital consoles - disc drive not testable
             "PlayStation 5 digital": ["battery", "display", "speaker_mic", "disc_storage"],
             "Xbox Series S": ["battery", "display", "speaker_mic", "disc_storage"],
-            
-            // PlayStation Portable - controller test not testable
             "PlayStation Portable": ["controller"],
-            
-            // PlayStation Portal 2025 - disc drive and load test not testable
             "PlayStation Portal 2025": ["disc_storage", "load"],
-            
-            // PlayStation Vita - controller test not testable
             "PlayStation Vita": ["controller"],
-            
-            // Nintendo DS - network, accounts, controller tests not testable
             "Nintendo DS": ["network", "accounts", "controller"],
-            
-            // All other Nintendo handhelds - controller test not testable
             "Nintendo 2DS (Original)": ["controller"],
             "Nintendo 3DS (Original)": ["controller"],
             "Nintendo 3DS XL": ["controller"],
@@ -1066,73 +1714,350 @@
             "New Nintendo 2DS XL": ["controller"],
             "Nintendo DSi": ["controller"],
             "Nintendo DSi XL": ["controller"],
-            
-            // Nintendo Wii - display, speaker, battery tests not testable
             "Nintendo Wii": ["display", "speaker_mic", "battery"],
-            
-            // Old consoles - network, accounts, battery, speaker, display not testable
             "Nintendo 64 (Original)": ["network", "accounts", "battery", "speaker_mic", "display"],
             "PlayStation 1": ["network", "accounts", "battery", "speaker_mic", "display"],
             "PlayStation 2": ["network", "accounts", "battery", "speaker_mic", "display"]
         };
 
-        // Select form function
+        // Console categories for tracking
+        const CONSOLE_CATEGORIES = {
+            "PlayStation": ["PlayStation 1", "PlayStation 2", "PlayStation 3", "PlayStation 4", "PlayStation 4 slim", "PlayStation 4 pro", "PlayStation 5", "PlayStation 5 digital", "PlayStation 5 pro", "PlayStation Portal 2025", "PlayStation Portable", "PlayStation Vita"],
+            "Xbox": ["Xbox (original)", "Xbox 360", "Xbox One (Original)", "Xbox One S", "Xbox One X", "Xbox Series S", "Xbox Series X"],
+            "Nintendo": ["Nintendo DS", "Nintendo 2DS (Original)", "Nintendo 3DS (Original)", "Nintendo 3DS XL", "New Nintendo 3DS", "New Nintendo 3DS XL", "New Nintendo 2DS XL", "Nintendo DSi", "Nintendo DSi XL", "Nintendo 64 (Original)", "Nintendo Switch", "Nintendo Switch 2", "Nintendo Game Boy", "Nintendo Game Boy Advance", "Nintendo Wii", "Nintendo Wii U"],
+            "Handheld PCs": ["Asus ROG Ally (2023)", "Asus ROG Ally X (2024)", "Lenovo Legion Go", "Steam Deck"],
+            "Other": ["device not supported"]
+        };
+
+        let CURRENT_FORM = 'form1';
+        let CURRENT_FIELD_IDS = FIELD_IDS_FORM1;
+        let currentConsoleTab = 'today';
+        let currentStatsTab = 'today';
+
+        // Stats Tracking
+        let stats = {
+            today: {
+                total: 0,
+                passed: 0,
+                failed: 0,
+                queued: 0
+            },
+            alltime: {
+                total: 0,
+                passed: 0,
+                failed: 0,
+                queued: 0
+            }
+        };
+
+        // Console Statistics
+        let consoleStats = {
+            daily: {},
+            alltime: {}
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadStats();
+            loadConsoleStats();
+            updateStatsDisplay();
+            updateConsoleStatsDisplay();
+            updateQueueUI();
+            selectForm('form1');
+            document.getElementById('item_id').focus();
+            
+            // Auto-fix form URL if needed
+            autoFixFormURLs();
+            
+            // Check for midnight reset
+            checkMidnightReset();
+        });
+
+        function loadStats() {
+            const saved = localStorage.getItem('consoleTestStats');
+            if (saved) {
+                stats = JSON.parse(saved);
+                // Update queued count from actual queue
+                stats.today.queued = getQueue().length;
+                stats.alltime.queued = getQueue().length;
+            }
+        }
+
+        function saveStats() {
+            localStorage.setItem('consoleTestStats', JSON.stringify(stats));
+        }
+
+        function loadConsoleStats() {
+            const saved = localStorage.getItem('consoleTestConsoleStats');
+            if (saved) {
+                consoleStats = JSON.parse(saved);
+            }
+        }
+
+        function saveConsoleStats() {
+            localStorage.setItem('consoleTestConsoleStats', JSON.stringify(consoleStats));
+        }
+
+        function updateStatsDisplay() {
+            const currentStats = currentStatsTab === 'today' ? stats.today : stats.alltime;
+            
+            document.getElementById('statTotal').textContent = currentStats.total;
+            document.getElementById('statPassed').textContent = currentStats.passed;
+            document.getElementById('statFailed').textContent = currentStats.failed;
+            document.getElementById('statQueued').textContent = currentStats.queued;
+            saveStats();
+        }
+
+        function switchStatsTab(tab) {
+            currentStatsTab = tab;
+            
+            // Update tab buttons
+            document.querySelectorAll('.stats-tab').forEach(tabElement => {
+                tabElement.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            updateStatsDisplay();
+        }
+
+        function updateConsoleStatsDisplay() {
+            const searchTerm = document.getElementById('consoleSearch').value.toLowerCase();
+            const categoriesContainer = document.getElementById('consoleCategories');
+            
+            // Clear existing content
+            categoriesContainer.innerHTML = '';
+            
+            // Sort categories by count (today or alltime)
+            const categories = Object.keys(CONSOLE_CATEGORIES);
+            
+            // Calculate totals for sorting
+            const categoryTotals = {};
+            categories.forEach(category => {
+                if (currentConsoleTab === 'today') {
+                    categoryTotals[category] = getCategoryTodayCount(category);
+                } else {
+                    categoryTotals[category] = getCategoryAllTimeCount(category);
+                }
+            });
+            
+            // Sort by total count (descending)
+            const sortedCategories = categories.sort((a, b) => {
+                return categoryTotals[b] - categoryTotals[a];
+            });
+            
+            // Create category elements
+            sortedCategories.forEach(category => {
+                if (category.toLowerCase().includes(searchTerm) || searchTerm === '') {
+                    const todayCount = getCategoryTodayCount(category);
+                    const allTimeCount = getCategoryAllTimeCount(category);
+                    
+                    // Only show categories with counts
+                    if (todayCount > 0 || allTimeCount > 0) {
+                        const categoryElement = document.createElement('div');
+                        categoryElement.className = 'console-category';
+                        categoryElement.onclick = () => showConsoleBreakdown(category);
+                        
+                        // Get top 3 models for this category
+                        const topModels = getTopModelsForCategory(category, 3);
+                        
+                        categoryElement.innerHTML = `
+                            <div class="console-category-header">
+                                <div class="console-name">${category}</div>
+                                <div class="console-counts">
+                                    <span class="today-count">Today: ${todayCount}</span>
+                                    <span class="alltime-count">All Time: ${allTimeCount}</span>
+                                </div>
+                            </div>
+                            <div class="console-breakdown">
+                                ${topModels.map(model => `
+                                    <div class="breakdown-item">
+                                        <span>${model.name}</span>
+                                        <span>${currentConsoleTab === 'today' ? model.today : model.alltime}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `;
+                        
+                        categoriesContainer.appendChild(categoryElement);
+                    }
+                }
+            });
+            
+            // If no results, show message
+            if (categoriesContainer.children.length === 0) {
+                categoriesContainer.innerHTML = `
+                    <div class="queue-empty">
+                        <div class="queue-empty-icon">🎮</div>
+                        <div class="queue-empty-text">
+                            No consoles tested yet<br>
+                            Start testing to see statistics here
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function getCategoryTodayCount(category) {
+            let total = 0;
+            const models = CONSOLE_CATEGORIES[category];
+            models.forEach(model => {
+                if (consoleStats.daily[model]) {
+                    total += consoleStats.daily[model];
+                }
+            });
+            return total;
+        }
+
+        function getCategoryAllTimeCount(category) {
+            let total = 0;
+            const models = CONSOLE_CATEGORIES[category];
+            models.forEach(model => {
+                if (consoleStats.alltime[model]) {
+                    total += consoleStats.alltime[model];
+                }
+            });
+            return total;
+        }
+
+        function getTopModelsForCategory(category, limit = 3) {
+            const models = CONSOLE_CATEGORIES[category];
+            const modelStats = [];
+            
+            models.forEach(model => {
+                const today = consoleStats.daily[model] || 0;
+                const alltime = consoleStats.alltime[model] || 0;
+                
+                if (today > 0 || alltime > 0) {
+                    modelStats.push({
+                        name: model,
+                        today: today,
+                        alltime: alltime
+                    });
+                }
+            });
+            
+            // Sort by current tab's count
+            modelStats.sort((a, b) => {
+                if (currentConsoleTab === 'today') {
+                    return b.today - a.today;
+                } else {
+                    return b.alltime - a.alltime;
+                }
+            });
+            
+            return modelStats.slice(0, limit);
+        }
+
+        function updateConsoleStats(model) {
+            const today = new Date().toISOString().split('T')[0];
+            
+            // Initialize if needed
+            if (!consoleStats.daily[today]) {
+                consoleStats.daily[today] = {};
+            }
+            
+            // Update daily stats
+            if (!consoleStats.daily[today][model]) {
+                consoleStats.daily[today][model] = 0;
+            }
+            consoleStats.daily[today][model]++;
+            
+            // Update all-time stats
+            if (!consoleStats.alltime[model]) {
+                consoleStats.alltime[model] = 0;
+            }
+            consoleStats.alltime[model]++;
+            
+            saveConsoleStats();
+            updateConsoleStatsDisplay();
+        }
+
+        function switchConsoleTab(tab) {
+            currentConsoleTab = tab;
+            
+            // Update tab buttons
+            document.querySelectorAll('.console-tab').forEach(tabElement => {
+                tabElement.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            updateConsoleStatsDisplay();
+        }
+
+        function filterConsoles() {
+            updateConsoleStatsDisplay();
+        }
+
+        function showConsoleBreakdown(category) {
+            const models = CONSOLE_CATEGORIES[category];
+            let breakdownHTML = `<strong>${category} - Detailed Breakdown:</strong><br><br>`;
+            
+            models.forEach(model => {
+                const today = consoleStats.daily[model] || 0;
+                const alltime = consoleStats.alltime[model] || 0;
+                
+                if (today > 0 || alltime > 0) {
+                    breakdownHTML += `${model}: Today: ${today}, All Time: ${alltime}<br>`;
+                }
+            });
+            
+            alert(breakdownHTML);
+        }
+
         function selectForm(formId) {
             CURRENT_FORM = formId;
             
-            // Update UI selection
             document.getElementById('form1Option').classList.remove('selected');
             document.getElementById('form2Option').classList.remove('selected');
             document.getElementById('form3Option').classList.remove('selected');
             document.getElementById(formId + 'Option').classList.add('selected');
             
-            // Update field IDs and preview text
             if (formId === 'form1') {
                 CURRENT_FIELD_IDS = FIELD_IDS_FORM1;
                 document.getElementById('formPreview').innerHTML = 
-                    'Currently selected: <strong style="color:#ff3333">LIVE TESTING</strong> — Detailed testing with cascade logic';
+                    'Currently selected: <strong style="color:#ff3333">FAILED TEST</strong> — Detailed testing with cascade logic';
                 
-                // Show LIVE form fields, hide others
                 document.getElementById('liveFormFields').style.display = 'block';
-                document.getElementById('liveFailurePoint').style.display = 'block';
-                document.getElementById('liveFailureReason').style.display = 'block';
                 document.getElementById('rejectionFormFields').style.display = 'none';
                 document.getElementById('passAllFormFields').style.display = 'none';
+                document.getElementById('notTestableBox').style.display = 'none';
+                
+                // Show failure fields for form1
+                document.getElementById('failureFields').style.display = 'block';
             } else if (formId === 'form2') {
                 CURRENT_FIELD_IDS = FIELD_IDS_FORM2;
                 document.getElementById('formPreview').innerHTML = 
                     'Currently selected: <strong style="color:#ff3333">REJECTION</strong> — Single reason rejection';
                 
-                // Show REJECTION form fields, hide others
                 document.getElementById('liveFormFields').style.display = 'none';
-                document.getElementById('liveFailurePoint').style.display = 'none';
-                document.getElementById('liveFailureReason').style.display = 'none';
                 document.getElementById('rejectionFormFields').style.display = 'block';
                 document.getElementById('passAllFormFields').style.display = 'none';
+                document.getElementById('notTestableBox').style.display = 'none';
             } else if (formId === 'form3') {
                 CURRENT_FIELD_IDS = FIELD_IDS_FORM1;
                 document.getElementById('formPreview').innerHTML = 
                     'Currently selected: <strong style="color:#00cc66">PASS ALL TESTS</strong> — All tests passed or not testable';
                 
-                // Show PASS ALL form fields (only basic info), hide others
                 document.getElementById('liveFormFields').style.display = 'block';
-                document.getElementById('liveFailurePoint').style.display = 'none';
-                document.getElementById('liveFailureReason').style.display = 'none';
                 document.getElementById('rejectionFormFields').style.display = 'none';
                 document.getElementById('passAllFormFields').style.display = 'block';
+                
+                // HIDE failure fields for form3
+                document.getElementById('failureFields').style.display = 'none';
+                
+                // Update not testable info when switching to form3
+                const model = document.getElementById('model').value;
+                if (model) {
+                    updateNotTestableInfo();
+                }
             }
-            
-            document.getElementById('formPreview').style.display = 'block';
         }
 
-        // Update failure reason dropdown
         function updateFailureReasons() {
             const failurePoint = document.getElementById('failure_point').value;
             const reasonSelect = document.getElementById('failure_reason');
-            const previewBox = document.getElementById('previewBox');
             
             reasonSelect.innerHTML = '';
-            previewBox.style.display = 'none';
             
             if (!failurePoint) {
                 reasonSelect.innerHTML = '<option value="">Select failure point first</option>';
@@ -1140,172 +2065,517 @@
             }
             
             const reasons = FAILURE_REASONS[failurePoint] || ["Other"];
-            
             reasons.forEach(reason => {
                 const option = document.createElement('option');
                 option.value = reason;
                 option.textContent = reason;
                 reasonSelect.appendChild(option);
             });
-            
-            previewBox.style.display = 'block';
         }
 
-        // Function to check if a test should be "Not testable" for a specific console
+        function updateNotTestableInfo() {
+            const model = document.getElementById('model').value;
+            const notTestableBox = document.getElementById('notTestableBox');
+            const notTestableList = document.getElementById('notTestableList');
+            
+            // Clear the list
+            notTestableList.innerHTML = '';
+            
+            // Only show for Pass All Tests form
+            if (CURRENT_FORM !== 'form3') {
+                notTestableBox.style.display = 'none';
+                return;
+            }
+            
+            if (!model) {
+                notTestableBox.style.display = 'none';
+                return;
+            }
+            
+            const specialTests = SPECIAL_CONSOLES[model];
+            
+            if (specialTests && specialTests.length > 0) {
+                notTestableBox.style.display = 'block';
+                
+                // Add tests that will be marked as "Not testable"
+                specialTests.forEach(test => {
+                    const li = document.createElement('li');
+                    li.textContent = getTestDisplayName(test);
+                    notTestableList.appendChild(li);
+                });
+            } else {
+                notTestableBox.style.display = 'none';
+            }
+        }
+
+        function getTestDisplayName(testKey) {
+            const testNames = {
+                "auth": "Authenticity check",
+                "boot": "Powering on and booting up",
+                "buttons": "Buttons test",
+                "jailbreak": "Jailbreak test",
+                "network": "Network connections test",
+                "accounts": "Accounts check",
+                "ports": "Ports test",
+                "disc_storage": "Disc drive and storage test",
+                "battery": "Battery test",
+                "display": "Display test",
+                "speaker_mic": "Speaker and microphone test",
+                "load": "Load test",
+                "noise_smell": "Noise and smell test",
+                "controller": "Controller test",
+                "accessories": "Accessories test"
+            };
+            return testNames[testKey] || testKey;
+        }
+
         function isTestNotTestableForConsole(consoleModel, testName) {
             const specialTests = SPECIAL_CONSOLES[consoleModel];
             return specialTests && specialTests.includes(testName);
         }
 
-        // Generate and open the form
-        function generateForm() {
+        // Queue Management
+        function getQueue() {
+            const queue = localStorage.getItem('consoleTestQueue');
+            return queue ? JSON.parse(queue) : [];
+        }
+
+        function saveQueue(queue) {
+            localStorage.setItem('consoleTestQueue', JSON.stringify(queue));
+            updateQueueUI();
+            // Update stats queued count
+            stats.today.queued = queue.length;
+            stats.alltime.queued = queue.length;
+            updateStatsDisplay();
+        }
+
+        function collectFormData() {
             const itemId = document.getElementById('item_id').value.trim();
             const serial = document.getElementById('serial').value.trim();
             
-            // Validation - common fields
             if (!itemId || !serial) {
                 alert("❌ Please fill Item ID and Serial Number");
-                return;
+                return null;
             }
             
-            // Get the correct form URL
-            const baseUrl = FORM_URLS[CURRENT_FORM];
+            const formData = {
+                formType: CURRENT_FORM,
+                itemId: itemId,
+                serial: serial
+            };
             
-            // Build URL
-            let url = baseUrl + "?";
-            
-            if (CURRENT_FORM === 'form1') {
-                // LIVE FORM: Detailed testing
+            if (CURRENT_FORM === 'form1' || CURRENT_FORM === 'form3') {
                 const model = document.getElementById('model').value;
-                const failurePoint = document.getElementById('failure_point').value;
-                const failureReason = document.getElementById('failure_reason').value;
                 
-                if (!model || !failurePoint) {
-                    alert("❌ Please select Model and Failure Point for LIVE form");
-                    return;
+                if (!model) {
+                    alert("❌ Please select Model");
+                    return null;
                 }
                 
-                // Add basic information
-                url += CURRENT_FIELD_IDS.item_id + "=" + encodeURIComponent(itemId) + "&";
-                url += CURRENT_FIELD_IDS.serial + "=" + encodeURIComponent(serial) + "&";
-                url += CURRENT_FIELD_IDS.model + "=" + encodeURIComponent(model) + "&";
+                formData.model = model;
                 
-                // Cascade logic - set test statuses
-                let failed = false;
-                
-                TESTS.forEach(test => {
-                    if (failed) {
-                        url += CURRENT_FIELD_IDS[test] + "=" + encodeURIComponent("Not testable") + "&";
-                    } else if (test === failurePoint) {
-                        url += CURRENT_FIELD_IDS[test] + "=" + encodeURIComponent("Failed") + "&";
-                        failed = true;
-                    } else {
-                        url += CURRENT_FIELD_IDS[test] + "=" + encodeURIComponent("Passed") + "&";
+                if (CURRENT_FORM === 'form1') {
+                    const failurePoint = document.getElementById('failure_point').value;
+                    const failureReason = document.getElementById('failure_reason').value;
+                    
+                    if (!failurePoint) {
+                        alert("❌ Please select Failure Point for FAILED TEST form");
+                        return null;
                     }
-                });
-                
-                // Try to pre-fill the "why" field, but show warning
-                if (failureReason) {
-                    const whyField = CURRENT_FIELD_IDS[failurePoint + "_why"];
-                    if (whyField) {
-                        url += whyField + "=" + encodeURIComponent(failureReason) + "&";
-                    }
-                }
-                
-                url += CURRENT_FIELD_IDS.general + "=" + encodeURIComponent(failed ? "Failed" : "Passed");
-                
-                // Show specific warning for LIVE form
-                if (failureReason) {
-                    alert("⚠️ IMPORTANT:\n\nGoogle Forms may not pre-fill the failure reason automatically.\n\nAfter the form opens, PLEASE CHECK if the 'why' field is selected.\n\nIf it's empty, you'll need to select it manually from the dropdown.");
+                    
+                    formData.failurePoint = failurePoint;
+                    formData.failureReason = failureReason;
                 }
                 
             } else if (CURRENT_FORM === 'form2') {
-                // REJECTION FORM: Simple rejection
                 const rejectionReason = document.getElementById('rejection_reason').value;
                 
                 if (!rejectionReason) {
                     alert("❌ Please select a rejection reason");
-                    return;
+                    return null;
                 }
                 
-                // Add basic information
-                url += CURRENT_FIELD_IDS.item_id + "=" + encodeURIComponent(itemId) + "&";
-                url += CURRENT_FIELD_IDS.serial + "=" + encodeURIComponent(serial) + "&";
-                url += CURRENT_FIELD_IDS.rejection_reason + "=" + encodeURIComponent(rejectionReason) + "&";
-                url += CURRENT_FIELD_IDS.general + "=" + encodeURIComponent("Failed");
+                formData.rejectionReason = rejectionReason;
+            }
+            
+            return formData;
+        }
+
+        function generateAndOpenForm() {
+            const formData = collectFormData();
+            if (!formData) return;
+            
+            const url = generateFormURL(formData);
+            
+            // Open form in new tab
+            window.open(url, '_blank');
+            
+            // Update stats
+            updateFormStats(formData);
+            
+            // Update console stats if model exists
+            if (formData.model) {
+                updateConsoleStats(formData.model);
+            }
+            
+            clearForm();
+        }
+
+        function addToQueue() {
+            const formData = collectFormData();
+            if (!formData) return;
+            
+            const queue = getQueue();
+            queue.push({
+                id: Date.now(),
+                timestamp: new Date().toISOString(),
+                ...formData
+            });
+            saveQueue(queue);
+            
+            // Update stats
+            updateFormStats(formData);
+            
+            // Update console stats if model exists
+            if (formData.model) {
+                updateConsoleStats(formData.model);
+            }
+            
+            // Show success message
+            const successMsg = document.getElementById('successMessage');
+            successMsg.style.display = 'block';
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+            }, 3000);
+            
+            clearForm();
+        }
+
+        function updateFormStats(formData) {
+            // Update today's stats
+            stats.today.total++;
+            if (formData.formType === 'form3') stats.today.passed++;
+            else if (formData.formType === 'form2' || formData.formType === 'form1') stats.today.failed++;
+            
+            // Update all-time stats
+            stats.alltime.total++;
+            if (formData.formType === 'form3') stats.alltime.passed++;
+            else if (formData.formType === 'form2' || formData.formType === 'form1') stats.alltime.failed++;
+            
+            updateStatsDisplay();
+        }
+
+        function generateFormURL(formData) {
+            const baseUrl = FORM_URLS[formData.formType];
+            
+            if (!baseUrl) {
+                alert("Error: Form URL not found. Please check the form configuration.");
+                return "#";
+            }
+            
+            let url = baseUrl + (baseUrl.includes('?') ? '&' : '?');
+            
+            if (formData.formType === 'form1') {
+                // FAILED TEST form - FULLY FILLED
+                url += FIELD_IDS_FORM1.item_id + "=" + encodeURIComponent(formData.itemId) + "&";
+                url += FIELD_IDS_FORM1.serial + "=" + encodeURIComponent(formData.serial) + "&";
+                url += FIELD_IDS_FORM1.model + "=" + encodeURIComponent(formData.model) + "&";
                 
-            } else if (CURRENT_FORM === 'form3') {
-                // PASS ALL TESTS FORM with special console logic
-                const model = document.getElementById('model').value;
-                
-                if (!model) {
-                    alert("❌ Please select Model for PASS ALL TESTS form");
-                    return;
-                }
-                
-                // Add basic information
-                url += CURRENT_FIELD_IDS.item_id + "=" + encodeURIComponent(itemId) + "&";
-                url += CURRENT_FIELD_IDS.serial + "=" + encodeURIComponent(serial) + "&";
-                url += CURRENT_FIELD_IDS.model + "=" + encodeURIComponent(model) + "&";
-                
-                // Set all tests to "Passed" or "Not testable" based on console type
+                let failed = false;
                 TESTS.forEach(test => {
-                    if (isTestNotTestableForConsole(model, test)) {
-                        url += CURRENT_FIELD_IDS[test] + "=" + encodeURIComponent("Not testable") + "&";
+                    if (failed) {
+                        // Everything after the failure point is "Not testable"
+                        url += FIELD_IDS_FORM1[test] + "=" + encodeURIComponent("Not testable") + "&";
+                    } else if (test === formData.failurePoint) {
+                        // Mark the failure point as "failed"
+                        if (test === "disc_storage") {
+                            url += FIELD_IDS_FORM1[test] + "=" + encodeURIComponent("Failed") + "&";
+                        } else {
+                            url += FIELD_IDS_FORM1[test] + "=" + encodeURIComponent("failed") + "&";
+                        }
+                        
+                        // Fill the failure reason
+                        if (formData.failureReason) {
+                            const whyField = FIELD_IDS_FORM1[formData.failurePoint + "_why"];
+                            if (whyField) {
+                                url += whyField + "=" + encodeURIComponent(formData.failureReason) + "&";
+                            }
+                        }
+                        failed = true;
                     } else {
-                        url += CURRENT_FIELD_IDS[test] + "=" + encodeURIComponent("Passed") + "&";
+                        // Everything before the failure point is "passed"
+                        url += FIELD_IDS_FORM1[test] + "=" + encodeURIComponent("passed") + "&";
                     }
                 });
                 
-                // Set general status to "Passed"
-                url += CURRENT_FIELD_IDS.general + "=" + encodeURIComponent("Passed");
+                // General field is "failed"
+                url += FIELD_IDS_FORM1.general + "=" + encodeURIComponent("failed");
                 
-                // Show console-specific message
-                let message = "✅ Generating PASS ALL TESTS form...\n\n";
-                const nonTestableTests = SPECIAL_CONSOLES[model];
+            } else if (formData.formType === 'form2') {
+                // REJECTION form - FULLY FILLED
+                url += FIELD_IDS_FORM2.item_id + "=" + encodeURIComponent(formData.itemId) + "&";
+                url += FIELD_IDS_FORM2.serial + "=" + encodeURIComponent(formData.serial) + "&";
+                url += FIELD_IDS_FORM2.rejection_reason + "=" + encodeURIComponent(formData.rejectionReason) + "&";
                 
-                if (nonTestableTests && nonTestableTests.length > 0) {
-                    message += `For ${model}, the following tests will be marked as "Not testable":\n\n`;
-                    nonTestableTests.forEach(test => {
-                        message += `• ${TEST_DISPLAY_NAMES[test] || test}\n`;
-                    });
-                    message += "\nAll other tests will be marked as 'Passed'.\n\n";
-                } else {
-                    message += "All tests will be marked as 'Passed'.\n\n";
-                }
+                // General field is "failed"
+                url += FIELD_IDS_FORM2.general + "=" + encodeURIComponent("failed");
                 
-                alert(message);
+            } else if (formData.formType === 'form3') {
+                // PASS ALL TESTS form - FULLY FILLED with special console handling
+                url += FIELD_IDS_FORM1.item_id + "=" + encodeURIComponent(formData.itemId) + "&";
+                url += FIELD_IDS_FORM1.serial + "=" + encodeURIComponent(formData.serial) + "&";
+                url += FIELD_IDS_FORM1.model + "=" + encodeURIComponent(formData.model) + "&";
+                
+                // Handle each test based on console type
+                TESTS.forEach(test => {
+                    if (isTestNotTestableForConsole(formData.model, test)) {
+                        // Special console - mark as "Not testable"
+                        url += FIELD_IDS_FORM1[test] + "=" + encodeURIComponent("Not testable") + "&";
+                    } else {
+                        // Normal console - mark as "passed"
+                        url += FIELD_IDS_FORM1[test] + "=" + encodeURIComponent("passed") + "&";
+                    }
+                });
+                
+                // General field is "passed"
+                url += FIELD_IDS_FORM1.general + "=" + encodeURIComponent("passed");
             }
             
-            console.log("Generated URL:", url);
+            return url;
+        }
+
+        function updateQueueUI() {
+            const queue = getQueue();
+            const count = document.getElementById('queueCount');
+            const content = document.getElementById('queueContent');
             
-            // Show instructions
-            showInstructions();
+            count.textContent = queue.length;
             
-            // Open form in new tab
+            if (queue.length === 0) {
+                content.innerHTML = `
+                    <div class="queue-empty">
+                        <div class="queue-empty-icon">📋</div>
+                        <div class="queue-empty-text">
+                            No forms queued yet<br>
+                            Fill out a form and click "Add to Queue"
+                        </div>
+                    </div>
+                `;
+                document.getElementById('submitAllBtn').disabled = true;
+            } else {
+                document.getElementById('submitAllBtn').disabled = false;
+                content.innerHTML = queue.map(item => {
+                    const timeAgo = getTimeAgo(item.timestamp);
+                    const formTypeName = item.formType === 'form1' ? 'Failed Test' : 
+                                        item.formType === 'form2' ? 'Rejection' : 'Pass All Tests';
+                    
+                    let details = `Serial: ${item.serial}`;
+                    if (item.model) details += `<br>Model: ${item.model}`;
+                    if (item.failurePoint) details += `<br>Failure: ${item.failurePoint}`;
+                    if (item.rejectionReason) details += `<br>Reason: ${item.rejectionReason}`;
+                    
+                    return `
+                        <div class="queue-item ${item.formType}">
+                            <div class="queue-item-header">
+                                <div class="queue-item-id">${item.itemId}</div>
+                                <div class="queue-item-type ${item.formType}">${formTypeName}</div>
+                            </div>
+                            <div class="queue-item-details">${details}</div>
+                            <div class="queue-item-time">⏱️ ${timeAgo}</div>
+                            <div class="queue-item-actions">
+                                <button class="queue-item-btn" onclick="submitSingleForm(${item.id})">📤 Open Form</button>
+                                <button class="queue-item-btn delete" onclick="removeFromQueue(${item.id})">🗑️ Delete</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+        }
+
+        function getTimeAgo(timestamp) {
+            const now = new Date();
+            const past = new Date(timestamp);
+            const diffMs = now - past;
+            const diffMins = Math.floor(diffMs / 60000);
+            
+            if (diffMins < 1) return 'Just now';
+            if (diffMins === 1) return '1 minute ago';
+            if (diffMins < 60) return `${diffMins} minutes ago`;
+            
+            const diffHours = Math.floor(diffMins / 60);
+            if (diffHours === 1) return '1 hour ago';
+            if (diffHours < 24) return `${diffHours} hours ago`;
+            
+            const diffDays = Math.floor(diffHours / 24);
+            if (diffDays === 1) return '1 day ago';
+            return `${diffDays} days ago`;
+        }
+
+        function openSidebar() {
+            document.getElementById('sidebar').classList.add('open');
+            document.getElementById('sidebarBackdrop').classList.add('show');
+        }
+
+        function closeSidebar() {
+            document.getElementById('sidebar').classList.remove('open');
+            document.getElementById('sidebarBackdrop').classList.remove('show');
+        }
+
+        function removeFromQueue(id) {
+            const queue = getQueue();
+            const filtered = queue.filter(item => item.id !== id);
+            saveQueue(filtered);
+        }
+
+        function submitSingleForm(id) {
+            const queue = getQueue();
+            const item = queue.find(q => q.id === id);
+            
+            if (!item) return;
+            
+            const url = generateFormURL(item);
+            window.open(url, '_blank');
+            
+            // Update stats
+            updateFormStats(item);
+            
+            // Update console stats if model exists
+            if (item.model) {
+                updateConsoleStats(item.model);
+            }
+            
+            stats.today.queued--;
+            stats.alltime.queued--;
+            updateStatsDisplay();
+            
             setTimeout(() => {
-                window.open(url, '_blank');
-                document.getElementById('successMessage').style.display = 'block';
-                
-                // Scroll to success message
-                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
-                
-                // Auto-hide success message after 5 seconds
+                if (confirm('Form opened. Remove from queue?')) {
+                    removeFromQueue(id);
+                }
+            }, 1000);
+        }
+
+        function submitAllQueued() {
+            const queue = getQueue();
+            
+            if (queue.length === 0) {
+                alert("No forms in queue");
+                return;
+            }
+            
+            const confirmed = confirm(`Open ${queue.length} form(s) in new tabs?`);
+            if (!confirmed) return;
+            
+            // Disable button to prevent double-clicks
+            const submitBtn = document.getElementById('submitAllBtn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            submitBtn.disabled = true;
+            
+            // Open ALL forms with proper delays
+            let openedCount = 0;
+            
+            queue.forEach((item, index) => {
                 setTimeout(() => {
-                    document.getElementById('successMessage').style.display = 'none';
-                }, 5000);
-            }, 500);
+                    const url = generateFormURL(item);
+                    window.open(url, '_blank');
+                    openedCount++;
+                    
+                    // Update stats
+                    updateFormStats(item);
+                    
+                    // Update console stats if model exists
+                    if (item.model) {
+                        updateConsoleStats(item.model);
+                    }
+                    
+                    // Remove from queue after opening
+                    removeFromQueue(item.id);
+                    
+                    // Update progress
+                    if (openedCount === queue.length) {
+                        setTimeout(() => {
+                            submitBtn.innerHTML = originalText;
+                            submitBtn.disabled = false;
+                            alert(`✅ ${openedCount} form(s) opened successfully!\nQueue has been cleared.`);
+                            closeSidebar();
+                        }, 500);
+                    }
+                }, index * 1000); // 1 second delay between forms
+            });
         }
 
-        // Show instructions
-        function showInstructions() {
-            const instructionsBox = document.getElementById('instructionsBox');
-            instructionsBox.style.display = 'block';
-            instructionsBox.scrollIntoView({ behavior: 'smooth' });
+        function exportQueueAsCSV() {
+            const queue = getQueue();
+            
+            if (queue.length === 0) {
+                alert("No forms to export");
+                return;
+            }
+            
+            // CSV headers
+            let csv = "Date,Time,Item ID,Serial Number,Model,Form Type,Failure Point,Failure Reason,Rejection Reason\n";
+            
+            // Add rows
+            queue.forEach(item => {
+                const date = new Date(item.timestamp);
+                const dateStr = date.toLocaleDateString();
+                const timeStr = date.toLocaleTimeString();
+                const formTypeName = item.formType === 'form1' ? 'Failed Test' : 
+                                    item.formType === 'form2' ? 'Rejection' : 'Pass All Tests';
+                
+                csv += `${dateStr},${timeStr},"${item.itemId}","${item.serial}","${item.model || ''}","${formTypeName}","${item.failurePoint || ''}","${item.failureReason || ''}","${item.rejectionReason || ''}"\n`;
+            });
+            
+            // Create download
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `console_test_queue_${new Date().toISOString().split('T')[0]}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            alert("✅ Queue exported as CSV!");
         }
 
-        // Clear form on page load
-        window.addEventListener('load', function() {
+        function clearQueue() {
+            if (confirm('Are you sure you want to clear all queued forms?')) {
+                localStorage.removeItem('consoleTestQueue');
+                updateQueueUI();
+                stats.today.queued = 0;
+                stats.alltime.queued = 0;
+                updateStatsDisplay();
+            }
+        }
+
+        function checkMidnightReset() {
+            const today = new Date().toISOString().split('T')[0];
+            const lastReset = localStorage.getItem('consoleTestLastReset');
+            
+            if (lastReset !== today) {
+                // Reset today's stats
+                stats.today.total = 0;
+                stats.today.passed = 0;
+                stats.today.failed = 0;
+                stats.today.queued = getQueue().length;
+                
+                // Clear today's console stats
+                consoleStats.daily = {};
+                
+                // Save the reset date
+                localStorage.setItem('consoleTestLastReset', today);
+                saveStats();
+                saveConsoleStats();
+                
+                updateStatsDisplay();
+                updateConsoleStatsDisplay();
+            }
+        }
+
+        function clearForm() {
             document.getElementById('item_id').value = '';
             document.getElementById('serial').value = '';
             document.getElementById('model').value = '';
@@ -1313,35 +2583,69 @@
             document.getElementById('failure_reason').value = '';
             document.getElementById('rejection_reason').value = '';
             
-            document.getElementById('formPreview').style.display = 'block';
-            document.getElementById('instructionsBox').style.display = 'block';
+            document.getElementById('notTestableBox').style.display = 'none';
             
-            console.log("🎮 Console Test Assistant Ready!");
-        });
+            document.getElementById('item_id').focus();
+        }
 
-        // Keyboard shortcuts
-        document.addEventListener('keydown', function(e) {
-            // Ctrl+Enter to generate form
-            if (e.ctrlKey && e.key === 'Enter') {
-                generateForm();
+        // Auto-fix form URLs function
+        function autoFixFormURLs() {
+            // Check if FORM_URLS form2 has a typo and fix it
+            if (FORM_URLS.form2 && FORM_URLS.form2.includes("google.comforms")) {
+                FORM_URLS.form2 = FORM_URLS.form2.replace("google.comforms", "google.com/forms");
             }
-            // F1 for LIVE form
-            if (e.key === 'F1') {
+        }
+
+        // Keyboard shortcuts - F2 without popup
+        let lastF2Time = 0;
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'Enter') {
+                e.preventDefault();
+                generateAndOpenForm();
+            }
+            if (e.ctrlKey && e.key === 'q') {
+                e.preventDefault();
+                addToQueue();
+            }
+            if (e.ctrlKey && e.key === '1') {
                 e.preventDefault();
                 selectForm('form1');
             }
-            // F2 for REJECTION form
-            if (e.key === 'F2') {
+            if (e.ctrlKey && e.key === '2') {
                 e.preventDefault();
                 selectForm('form2');
             }
-            // F3 for PASS ALL TESTS form
-            if (e.key === 'F3') {
+            if (e.ctrlKey && e.key === '3') {
                 e.preventDefault();
                 selectForm('form3');
             }
+            if (e.ctrlKey && e.key === 'l') {
+                e.preventDefault();
+                openSidebar();
+            }
+            if (e.key === 'F2') {
+                e.preventDefault();
+                // Prevent multiple rapid swaps
+                const now = Date.now();
+                if (now - lastF2Time > 500) { // 500ms delay between swaps
+                    swapIdSerial();
+                    lastF2Time = now;
+                }
+            }
+            if (e.key === 'Escape') {
+                closeSidebar();
+            }
         });
+
+        function swapIdSerial() {
+            const itemId = document.getElementById('item_id');
+            const serial = document.getElementById('serial');
+            
+            const temp = itemId.value;
+            itemId.value = serial.value;
+            serial.value = temp;
+        }
     </script>
 </body>
 </html>
-
