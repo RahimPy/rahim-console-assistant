@@ -1699,11 +1699,17 @@
             autoFixFormURLs();
             checkMidnightReset();
             
-            // ============ SCANNER-FRIENDLY AUTOFOCUS ============
-            let itemIdInputTimer;
+            // ============ SMART NAVIGATION SYSTEM ============
+            let itemIdTimer;
+            let serialTimer;
 
+            // FORM 1: Item ID → Serial → Model → Failure Point → Failure Reason
+            // FORM 2: Item ID → Serial → Rejection Reason  
+            // FORM 3: Item ID → Serial → Model
+
+            // Item ID → Serial
             document.getElementById('item_id').addEventListener('input', function() {
-                clearTimeout(itemIdInputTimer);
+                clearTimeout(itemIdTimer);
                 
                 // Clean any Tab characters
                 const value = this.value.replace(/\t/g, '');
@@ -1715,9 +1721,80 @@
                 
                 // If 8 digits, move to serial with small delay
                 if (value.length === 8) {
-                    itemIdInputTimer = setTimeout(() => {
+                    itemIdTimer = setTimeout(() => {
                         document.getElementById('serial').focus();
-                    }, 50); // Minimal delay - fastest but still works with scanners
+                    }, 50);
+                }
+            });
+
+            // Serial → Next field based on form type
+            document.getElementById('serial').addEventListener('input', function() {
+                clearTimeout(serialTimer);
+                
+                // Clean any Tab characters
+                const value = this.value.replace(/\t/g, '');
+                
+                // Update if cleaned
+                if (value !== this.value) {
+                    this.value = value;
+                }
+                
+                // If serial has content, move to next field
+                if (value.length > 0) {
+                    serialTimer = setTimeout(() => {
+                        if (CURRENT_FORM === 'form1') {
+                            document.getElementById('model').focus();
+                        } else if (CURRENT_FORM === 'form2') {
+                            document.getElementById('rejection_reason').focus();
+                        } else if (CURRENT_FORM === 'form3') {
+                            document.getElementById('model').focus();
+                        }
+                    }, 50);
+                }
+            });
+
+            // Model → Failure Point (for FORM 1)
+            document.getElementById('model').addEventListener('change', function() {
+                if (CURRENT_FORM === 'form1' && this.value) {
+                    setTimeout(() => {
+                        document.getElementById('failure_point').focus();
+                    }, 50);
+                }
+            });
+
+            // Failure Point → Failure Reason (for FORM 1)
+            document.getElementById('failure_point').addEventListener('change', function() {
+                if (CURRENT_FORM === 'form1' && this.value) {
+                    setTimeout(() => {
+                        document.getElementById('failure_reason').focus();
+                    }, 50);
+                }
+            });
+
+            // Failure Reason → Open Form button (for FORM 1)
+            document.getElementById('failure_reason').addEventListener('change', function() {
+                if (CURRENT_FORM === 'form1' && this.value) {
+                    setTimeout(() => {
+                        document.querySelector('.btn-success').focus();
+                    }, 50);
+                }
+            });
+
+            // Rejection Reason → Open Form button (for FORM 2)
+            document.getElementById('rejection_reason').addEventListener('change', function() {
+                if (CURRENT_FORM === 'form2' && this.value) {
+                    setTimeout(() => {
+                        document.querySelector('.btn-success').focus();
+                    }, 50);
+                }
+            });
+
+            // Model → Open Form button (for FORM 3)
+            document.getElementById('model').addEventListener('change', function() {
+                if (CURRENT_FORM === 'form3' && this.value) {
+                    setTimeout(() => {
+                        document.querySelector('.btn-success').focus();
+                    }, 50);
                 }
             });
 
@@ -1731,22 +1808,40 @@
                 }
             });
 
-            // Optional: Enter key to jump to serial
-            document.getElementById('item_id').addEventListener('keydown', function(e) {
-                if (e.key === 'Enter') {
+            document.getElementById('serial').addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
                     e.preventDefault();
-                    document.getElementById('serial').focus();
+                    const cleanValue = this.value.replace(/\t/g, '');
+                    this.value = cleanValue;
+                    if (CURRENT_FORM === 'form1') {
+                        document.getElementById('model').focus();
+                    } else if (CURRENT_FORM === 'form2') {
+                        document.getElementById('rejection_reason').focus();
+                    } else if (CURRENT_FORM === 'form3') {
+                        document.getElementById('model').focus();
+                    }
                 }
             });
 
-            // Optional: Enter at beginning of serial to jump back
-            document.getElementById('serial').addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' && this.selectionStart === 0 && this.value === '') {
-                    e.preventDefault();
-                    document.getElementById('item_id').focus();
+            // Enter key to submit form
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !e.ctrlKey) {
+                    const activeElement = document.activeElement;
+                    
+                    // Check if we're on a field that should trigger form submission
+                    if (CURRENT_FORM === 'form1' && activeElement.id === 'failure_reason') {
+                        e.preventDefault();
+                        generateAndOpenForm();
+                    } else if (CURRENT_FORM === 'form2' && activeElement.id === 'rejection_reason') {
+                        e.preventDefault();
+                        generateAndOpenForm();
+                    } else if (CURRENT_FORM === 'form3' && activeElement.id === 'model') {
+                        e.preventDefault();
+                        generateAndOpenForm();
+                    }
                 }
             });
-            // ============ END SCANNER-FRIENDLY AUTOFOCUS ============
+            // ============ END SMART NAVIGATION SYSTEM ============
         });
 
         function loadStats() {
@@ -2027,6 +2122,15 @@
                     updateNotTestableInfo();
                 }
             }
+            
+            // Focus on appropriate field based on form type
+            setTimeout(() => {
+                if (formId === 'form1' || formId === 'form3') {
+                    document.getElementById('item_id').focus();
+                } else if (formId === 'form2') {
+                    document.getElementById('item_id').focus();
+                }
+            }, 100);
         }
 
         function updateFailureReasons() {
